@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\galeri;
-use Image;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Carbon;
 
 class GaleriController extends Controller
@@ -50,5 +50,67 @@ class GaleriController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('all.galeri')->with($notification);
+    }
+
+    public function EditGaleri($id)
+    {
+        $galeri = galeri::findOrFail($id);
+        return view('admin.galeri.galeri_edit', compact('galeri'));
+    }
+    public function UpdateGaleri(Request $request)
+    {
+        $galeri_id = $request->id;
+
+        if ($request->file('galeri_image')) {
+            $image = $request->file('galeri_image');
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); //ngambil nama file
+
+            Image::make($image)->resize(1020, 519)->save('upload/galeri/' . $name_gen); //panjanglebar
+            $save_url = 'upload/galeri/' . $name_gen;
+
+            galeri::findOrfail($galeri_id)->update([
+                'galeri_name' => $request->galeri_name,
+                'galeri_title' => $request->galeri_title,
+                'galeri_description' => $request->galeri_description,
+                'galeri_image' => $save_url,
+            ]);
+            $notification = array(
+                'message' => 'Galeri Updated with Image Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.galeri')->with($notification);
+        } else {
+            galeri::findOrFail($galeri_id)->update([
+                'galeri_name' => $request->galeri_name,
+                'galeri_title' => $request->galeri_title,
+                'galeri_description' => $request->galeri_description,
+            ]);
+            $notification = array(
+                'message' => 'Galeri Updated without Image Successfully',
+                'alert-type' => 'success'
+            ); //end else
+            return redirect()->route('all.galeri')->with($notification);
+        }
+    } //end method
+
+    public function DeleteGaleri($id)
+    {
+        $galeri = galeri::findOrFail($id);
+        $img = $galeri->galeri_image;
+        unlink($img);
+
+        galeri::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Galeri Image Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    } //endmethod
+
+    public function GaleriDetails($id)
+    {
+        $galeri = galeri::findOrFail($id);
+        return view('frontend.galeri_details', compact('galeri'));
     }
 }
