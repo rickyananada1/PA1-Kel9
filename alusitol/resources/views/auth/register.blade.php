@@ -1,113 +1,127 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="">
-<!--<![endif]-->
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">
+    <meta charset="utf-8" />
+    <title>Register | Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
 
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/normalize.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/flag-icon.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/cs-skin-elastic.css') }}">
-    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
-    <link rel="stylesheet" href="{{ asset('admin/assets/scss/style.css') }}">
-
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <!-- Bootstrap Css -->
+    <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet"
+        type="text/css" />
+    <!-- Icons Css -->
+    <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
 </head>
 
-<body class="bg-dark">
-    <div class="sufee-login d-flex align-content-center flex-wrap">
-        <div class="container">
-            <div class="login-content">
-                <div class="login-logo">
-                    <a href="index.html">
-                        <img class="align-content" src="{{ asset('admin/images/logo.png') }}" alt="">
-                    </a>
+<body class="auth-body-bg">
+    <div class="bg-overlay"></div>
+    <div class="wrapper-page">
+        <div class="container-fluid p-0">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="text-center mt-4">
+                        <div class="mb-3">
+                            <a href="index.html" class="auth-logo">
+                                <img src="{{ asset('backend/assets/images/logo-dark.png') }}" height="30"
+                                    class="logo-dark mx-auto" alt="">
+                                <img src="{{ asset('backend/assets/images/logo-light.png') }}" height="30"
+                                    class="logo-light mx-auto" alt="">
+                            </a>
+                        </div>
+                    </div>
+
+                    <h4 class="text-muted text-center font-size-18"><b>Register</b></h4>
+
+                    <div class="p-3">
+                        <form class="form-horizontal mt-3" method="POST" action="{{ route('register') }}">
+                            @csrf
+
+                            <div class="form-group mb-3 row">
+                                <div class="col-12">
+                                    <input class="form-control" type="text" name="name" id="name"
+                                        placeholder="Name">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3 row">
+                                <div class="col-12">
+                                    <input class="form-control" type="text" name="username" id="username"
+                                        placeholder="UserName">
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-3 row">
+                                <div class="col-12">
+                                    <input class="form-control" type="text" name="email" id="email"
+                                        placeholder="Email">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3 row">
+                                <div class="col-12">
+                                    <input class="form-control" type="password" name="password" id="password"
+                                        placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group mb-3 row">
+                                <div class="col-12">
+                                    <input class="form-control" type="password" name="password_confirmation"
+                                        id="password_confirmation" placeholder="Password Confirmation">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group mb-3 row">
+                                <div class="col-12">
+                                    <div class="custom-control custom-checkbox">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group text-center row mt-3 pt-1">
+                                <div class="col-12">
+                                    <button class="btn btn-info w-100 waves-effect waves-light"
+                                        type="submit">Register</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-2 mb-0 row">
+                                <div class="col-12 mt-3 text-center">
+                                    <a href="{{ route('login') }}" class="text-muted">Already have account?</a>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- end form -->
+                    </div>
                 </div>
-                <div class="login-form">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="form-group">
-                            <label>User Name</label>
-                            <input id="name" type="text"
-                                class="form-control @error('name') is-invalid @enderror" name="name"
-                                value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Email address</label>
-                            <input id="email" type="email"
-                                class="form-control @error('email') is-invalid @enderror" name="email"
-                                value="{{ old('email') }}" required autocomplete="email">
-
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="new-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="password-confirm">Confirm
-                                Password</label>
-                            <input id="password-confirm" type="password" class="form-control"
-                                name="password_confirmation" required autocomplete="new-password">
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Agree the terms and policy
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('Register') }}
-                        </button>
-                        <div class="register-link m-t-15 text-center">
-                            <p>Already have account ? <a href="{{ route('login') }}"> Sign in</a></p>
-                        </div>
-                    </form>
-                </div>
+                <!-- end cardbody -->
             </div>
+            <!-- end card -->
         </div>
+        <!-- end container -->
     </div>
+    <!-- end -->
 
 
-    <script src="{{ asset('admin/assets/js/vendor/jquery-2.1.4.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/plugins.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/main.js') }}"></script>
+    <!-- JAVASCRIPT -->
+    <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
 
+    <script src="{{ asset('backend/assets/js/app.js') }}"></script>
 
 </body>
 
