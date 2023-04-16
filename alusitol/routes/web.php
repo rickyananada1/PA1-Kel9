@@ -45,6 +45,11 @@ Route::controller(GaleriController::class)->group(function () {
     Route::get('/all/galeri', 'AllGaleri')->name('all.galeri');
     Route::get('/add/galeri', 'AddGaleri')->name('add.galeri');
     Route::post('/store/galeri', 'StoreGaleri')->name('store.galeri');
+    Route::get('/edit/galeri{id}', 'EditGaleri')->name('edit.galeri');
+    Route::post('/update/galeri', 'UpdateGaleri')->name('update.galeri');
+    Route::get('/delete/galeri{id}', 'DeleteGaleri')->name('delete.galeri');
+
+    Route::get('/galeri/details{id}', 'GaleriDetails')->name('galeri.details');
 });
 
 Route::get('/', function () {
