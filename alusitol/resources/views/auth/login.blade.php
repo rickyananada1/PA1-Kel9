@@ -1,78 +1,131 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href="apple-icon.png">
-    <link rel="shortcut icon" href="favicon.ico">
 
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/normalize.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/flag-icon.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/cs-skin-elastic.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/scss/style.css') }}">
-    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
+    <meta charset="utf-8" />
+    <title>Login | Admin </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesdesign" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap Css -->
+    <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet"
+        type="text/css" />
+    <!-- Icons Css -->
+    <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
 </head>
 
-<body class="bg-dark">
-    <div class="sufee-login d-flex align-content-center flex-wrap">
-        <div class="container">
-            <div class="login-content">
-                <div class="login-logo">
-                    <a href="index.html">
-                        <img class="align-content" src="{{ asset('admin/images/logo.png') }}" alt="">
-                    </a>
-                </div>
-                <div class="login-form">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input id="email" type="email"
-                                class="form-control @error('email') is-invalid @enderror" name="email"
-                                value="{{ old('email') }}" required autocomplete="email" autofocus>
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+<body class="auth-body-bg">
+    <div class="bg-overlay"></div>
+    <div class="wrapper-page">
+        <div class="container-fluid p-0">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="text-center mt-4">
+                        <div class="mb-3">
+                            <a href="index.html" class="auth-logo">
+                                <img src="{{ asset('backend/assets/images/logo-dark.png') }}" height="30"
+                                    class="logo-dark mx-auto" alt="">
+                                <img src="{{ asset('backend/assets/images/logo-light.png') }}" height="30"
+                                    class="logo-light mx-auto" alt="">
+                            </a>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password">
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group" style="margin-left: 5%">
-                            <div class="checkbox">
-                                <label for="remember">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                        {{ old('remember') ? 'checked' : '' }}>
-                                    Remember Me
-                                </label>
-                                <label class="pull-right">
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        Forgot Your Password?
-                                    </a>
-                                </label>
+                    </div>
+
+                    <h4 class="text-muted text-center font-size-18"><b>Sign In</b></h4>
+
+                    <div class="p-3">
+                        <form class="form-horizontal mt-3" method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="form-group mb-3 row">
+                                <div class="col-12">
+                                    <input class="form-control" type="text"
+                                        required=""id="username"name="username" placeholder="Username">
+                                </div>
                             </div>
-                        </div>
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
-                        <div class="register-link m-t-15 text-center">
-                            <p>Don't have account? <a href="{{ route('register') }}">Sign Up Here</a></p>
-                        </div>
+
+                            <div class="form-group mb-3 row">
+                                <div class="col-12">
+                                    <input class="form-control" type="password"
+                                        required=""id="password"name="password" placeholder="Password">
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group mb-3 text-center row mt-3 pt-1">
+                                <div class="col-12">
+                                    <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Log
+                                        In</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-0 row mt-2">
+                                <div class="col-sm-7 mt-3">
+                                    <a href="{{ route('password.request') }}" class="text-muted"><i
+                                            class="mdi mdi-lock"></i> Forgot
+                                        your password?</a>
+                                </div>
+                                <div class="col-sm-5 mt-3">
+                                    <a href="{{ route('register') }}" class="text-muted"><i
+                                            class="mdi mdi-account-circle"></i> Create an account</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- end -->
+                </div>
+                <!-- end cardbody -->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end -->
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
+
+    <script src="{{ asset('backend/assets/js/app.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+ @if(Session::has('message'))
+ var type = "{{ Session::get('alert-type','info') }}"
+ switch(type){
+    case 'info':
+    toastr.info(" {{ Session::get('message') }} ");
+    break;
+
+    case 'success':
+    toastr.success(" {{ Session::get('message') }} ");
+    break;
+
+    case 'warning':
+    toastr.warning(" {{ Session::get('message') }} ");
+    break;
+
+    case 'error':
+    toastr.error(" {{ Session::get('message') }} ");
+    break; 
+ }
+ @endif 
+</script>
+
+
+</body>
+
+</html>
