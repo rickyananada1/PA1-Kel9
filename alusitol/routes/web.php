@@ -7,18 +7,28 @@ use App\Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\GaleriController;
+use App\Http\Controllers\Home\BeritaCategoryController;
+use App\Http\Controllers\Home\BeritaController;
+use App\Http\Controllers\Home\FooterController;
+use App\Http\Controllers\Home\AluAluController;
+use App\Http\Controllers\HomeController;
+
 
 
 
 //Route untuk Admin
-Route::controller(AdminController::class)->group(function () {
-    Route::get('/admin/logout', 'destroy')->name('admin.logout');
-    Route::get('/admin/profile', 'Profile')->name('admin.profile');
-    Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
-    Route::post('/store/profile', 'StoreProfile')->name('store.profile');
+Route::middleware(['auth'])->group(function () {
+    // ...
 
-    Route::get('/change/password', 'ChangePassword')->name('change.password');
-    Route::post('/update/password', 'UpdatePassword')->name('update.password');
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/admin/logout', 'destroy')->name('admin.logout');
+        Route::get('/admin/profile', 'Profile')->name('admin.profile');
+        Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
+        Route::post('/store/profile', 'StoreProfile')->name('store.profile');
+
+        Route::get('/change/password', 'ChangePassword')->name('change.password');
+        Route::post('/update/password', 'UpdatePassword')->name('update.password');
+    });
 });
 //Route untuk Home
 Route::controller(HomeSliderController::class)->group(function () {
@@ -48,13 +58,60 @@ Route::controller(GaleriController::class)->group(function () {
     Route::get('/edit/galeri{id}', 'EditGaleri')->name('edit.galeri');
     Route::post('/update/galeri', 'UpdateGaleri')->name('update.galeri');
     Route::get('/delete/galeri{id}', 'DeleteGaleri')->name('delete.galeri');
+    Route::get('/home/galeri', 'HomeGaleri')->name('home.galeri');
 
     Route::get('/galeri/details{id}', 'GaleriDetails')->name('galeri.details');
 });
 
-Route::get('/', function () {
-    return view('frontend.index');
+//Route untuk  Category Berita
+Route::controller(BeritaCategoryController::class)->group(function () {
+    Route::get('/all/berita/category', 'AllBeritaCategory')->name('all.berita.category');
+    Route::get('/add/berita/category', 'AddBeritaCategory')->name('add.berita.category');
+    Route::post('/store/berita/category', 'StoreBeritaCategory')->name('store.berita.category');
+    Route::get('/edit/berita/category/{id}', 'EditBeritaCategory')->name('edit.berita.category');
+    Route::post('/update/berita/category/{id}', 'UpdateBeritaCategory')->name('update.berita.category');
+    Route::get('/delete/berita/category/{id}', 'DeleteBeritaCategory')->name('delete.berita.category');
 });
+//Route untuk Berita
+Route::controller(BeritaController::class)->group(function () {
+    Route::get('/all/berita', 'AllBerita')->name('all.berita');
+    Route::get('/add/berita', 'AddBerita')->name('add.berita');
+    Route::get('/edit/berita/{id}', 'EditBerita')->name('edit.berita');
+    Route::get('/delete/berita/{id}', 'DeleteBerita')->name('delete.berita');
+    Route::post('/store/berita', 'StoreBerita')->name('store.berita');
+    Route::post('/update/berita', 'UpdateBerita')->name('update.berita');
+
+    Route::get('/berita/details/{id}', 'BeritaDetails')->name('berita.details');
+    Route::get('/category/berita/{id}', 'CategoryBerita')->name('category.berita');
+    Route::get('/berita', 'HomeBerita')->name('home.berita');
+});
+
+//Route untuk Footer
+Route::controller(FooterController::class)->group(function () {
+    Route::get('/footer/setup', 'FooterSetup')->name('footer.setup');
+    Route::post('/update/footer', 'UpdateFooter')->name('update.footer');
+});
+
+//Route untuk Alu-Alu
+Route::controller(AluAluController::class)->group(function () {
+    Route::get('/alualu', 'AluAlu')->name('alualu.me');
+    Route::post('/store/alualu', 'StoreAluAlu')->name('store.alualu');
+    Route::get('/alualu/message', 'AluAluMessage')->name('alualu.message');
+    Route::get('/delete/alualu/{id}', 'DeleteAluAlu')->name('delete.alualu');
+});
+
+//Home
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'HomeMain')->name('home');
+});
+
+
+
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
+
+
 
 Route::get('/dashboard', function () {
     return view('admin.index');

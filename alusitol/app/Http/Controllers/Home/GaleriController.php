@@ -113,4 +113,9 @@ class GaleriController extends Controller
         $galeri = galeri::findOrFail($id);
         return view('frontend.galeri_details', compact('galeri'));
     }
+    public function HomeGaleri()
+    {
+        $galeri = galeri::latest()->get();
+        return view('frontend.galeri', compact('galeri'));
+    }
 }
