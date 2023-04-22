@@ -1,3 +1,8 @@
+@php
+    $route = Route::current()->getName();
+@endphp
+
+
 <header>
     <div id="sticky-header" class="menu__area transparent-header">
         <div class="container custom-container">
@@ -14,22 +19,31 @@
                             </div>
                             <div class="navbar__wrap main__menu d-none d-xl-flex">
                                 <ul class="navigation">
-                                    <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                                    <li><a href="{{ route('home.about') }}">Tentang Desa</a></li>
-                                    <li><a href="services-details.html">Layanan</a></li>
-                                    <li class="menu-item-has-children"><a href="#">Galeri</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="portfolio.html">Portfolio</a></li>
-                                            <li><a href="portfolio-details.html">Portfolio Details</a></li>
-                                        </ul>
+
+                                    <li class="{{ $route == 'home' ? 'active' : '' }}"><a
+                                            href="{{ route('home') }}">Home</a></li>
+
+                                    <li class="{{ $route == 'home.about' ? 'active' : '' }}"><a
+                                            href="{{ route('home.about') }}">Tentang Desa</a></li>
+
+                                    <li><a href="services-details.html">
+                                            Layanan</a></li>
+
+
+                                    <li class="{{ $route == 'home.galeri' ? 'active' : '' }}"><a
+                                            href="{{ route('home.galeri') }}">
+                                            Galeri</a>
                                     </li>
-                                    <li class="menu-item-has-children"><a href="#">Berita</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="blog.html">Our News</a></li>
-                                            <li><a href="blog-details.html">News Details</a></li>
-                                        </ul>
+
+
+                                    <li class="{{ $route == 'home.berita' ? 'active' : '' }} "><a
+                                            href="{{ route('home.berita') }}">
+                                            Berita</a>
                                     </li>
-                                    <li><a href="contact.html">Alu Alu</a></li>
+
+                                    <li class="{{ $route == 'alualu.me' ? 'active' : '' }}"><a
+                                            href="{{ route('alualu.me') }}">
+                                            Alu Alu</a></li>
                                 </ul>
                             </div>
                             <div class="header__btn d-none d-md-block">
