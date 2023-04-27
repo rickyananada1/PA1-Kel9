@@ -5,8 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class galeri extends Model
+class Galeri extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function category()
+    {
+        return $this->belongsTo(GaleriCategorym::class, 'galeri_category_id', 'id');
+    }
 }

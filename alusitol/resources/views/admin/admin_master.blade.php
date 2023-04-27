@@ -1,146 +1,107 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-CN">
 
 <head>
-
-    <meta charset="utf-8" />
-    <title>Dashboard | Upcube - Admin & Dashboard Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesdesign" name="author" />
+    <!--  meta tags dan CSS -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap-maizi.css') }}" />
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/content-style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/mricode.pagination.css') }}" />
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/jquery.fancybox.css') }}" />
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/sweetalert.css') }}" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css">
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
 
-    <!-- jquery.vectormap css -->
-    <link href="{{ asset('backend/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css') }}"
-        rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .bootstrap-tagsinput .tag {
+            margin-right: 2px;
+            color: snow;
+            font-weight: 700px;
+            background-color: #5bc0de;
+        }
 
-    <!-- DataTables -->
-    <link href="{{ asset('backend/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}"
-        rel="stylesheet" type="text/css" />
+        td {
+            white-space: nowrap;
+            overflow: auto;
+            max-width: 100px;
 
-    <!-- Responsive datatable examples -->
-    <link href="{{ asset('backend/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
-        rel="stylesheet" type="text/css" />
-
-    <!-- Bootstrap Css -->
-    <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet"
-        type="text/css" />
-    <!-- Icons Css -->
-    <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+        }
+    </style>
 
 </head>
 
-<body data-topbar="dark">
+<body>
 
-    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+    <!-- Start Navbar -->
+    @include('admin.body.navbar')
+    <!-- End Navbar -->
 
-    <!-- Begin page -->
-    <div id="layout-wrapper">
+    <!-- start main content -->
+    <!-- yield untuk dinamiss hasilkan konten ke siapa aja yang admin itu sectionnya-->
+    @yield('admin')
+    <!-- end main content -->
 
+    <!-- Start Footer -->
+    @include('admin.body.footer')
+    <!--End Footer -->
 
-        @include('admin.body.header')
-        <!-- ========== Left Sidebar Start ========== -->
-        @include('admin.body.sidebar')
-        <!-- Left Sidebar End -->
-
-
-
-        <!-- ============================================================== -->
-        <!-- Start right Content here -->
-        <!-- ============================================================== -->
-        <div class="main-content">
-
-            @yield('admin')
-            <!-- End Page-content -->
-
-            @include('admin.body.footer')
-        </div>
-        <!-- end main content-->
-
-    </div>
-    <!-- END layout-wrapper -->
-
-
-    <!-- /Right-bar -->
-
-    <!-- Right bar overlay-->
-    <div class="rightbar-overlay"></div>
-
-    <!-- JAVASCRIPT -->
-    <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
-
-
-    <!-- apexcharts -->
-    <script src="{{ asset('backend/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
-
-    <!-- jquery.vectormap map -->
-    <script src="{{ asset('backend/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js') }}">
-    </script>
-    <script src="{{ asset('backend/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js') }}">
-    </script>
-
-    <!-- Required datatable js -->
-    <script src="{{ asset('backend/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-
-    <!-- Responsive examples -->
-    <script src="{{ asset('backend/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}">
-    </script>
-
-    <script src="{{ asset('backend/assets/js/pages/dashboard.init.js') }}"></script>
-
-    <!-- App js -->
-    <script src="{{ asset('backend/assets/js/app.js') }}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <script>
-        @if (Session::has('message'))
-            var type = "{{ Session::get('alert-type', 'info') }}"
-            switch (type) {
-                case 'info':
-                    toastr.info(" {{ Session::get('message') }} ");
-                    break;
-
-                case 'success':
-                    toastr.success(" {{ Session::get('message') }} ");
-                    break;
-
-                case 'warning':
-                    toastr.warning(" {{ Session::get('message') }} ");
-                    break;
-
-                case 'error':
-                    toastr.error(" {{ Session::get('message') }} ");
-                    break;
-            }
-        @endif
-    </script>
-    <!--tinymce js-->
-    <script src="{{ asset('backend/assets/libs/tinymce/tinymce.min.js') }}"></script>
-
-    <!-- init js -->
-    <script src="{{ asset('backend/assets/js/pages/form-editor.init.js') }}"></script>
-    <!-- Required datatable js -->
-    <script src="{{ asset('backend/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/pages/datatables.init.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
-    <script src="{{ asset('backend/assets/js/code.js') }}"></script>
 
 
 </body>
+<!-- Javascript-->
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="{{ asset('backend/assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('backend/assets/js/plugins/pagination/mricode.pagination.js') }}"></script>
+<script src="{{ asset('backend/assets/js/plugins/fancybox/jquery.fancybox.js') }}"></script>
+<script src="{{ asset('backend/assets/js/plugins/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('backend/assets/js/Chart.js') }}"></script>
+<script src="{{ asset('backend/assets/js/common/common.js') }}"></script>
+<script src="{{ asset('backend/assets/js/module/account.js') }}"></script>
+<script src="{{ asset('backend/assets/js/script.js') }}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+<script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+<script>
+    @if (Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}"
+        switch (type) {
+            case 'info':
+                toastr.info(" {{ Session::get('message') }} ");
+                break;
+
+            case 'success':
+                toastr.success(" {{ Session::get('message') }} ");
+                break;
+
+            case 'warning':
+                toastr.warning(" {{ Session::get('message') }} ");
+                break;
+
+            case 'error':
+                toastr.error(" {{ Session::get('message') }} ");
+                break;
+        }
+    @endif
+</script>
+
+<!--ini itu untuk file reader jadi gambar apa yang dipilih sama user maka akan ditampilkan -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#image').change(function(e) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#showImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        });
+    });
+</script>
+
 
 </html>

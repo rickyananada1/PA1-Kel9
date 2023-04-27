@@ -1,72 +1,46 @@
 @extends('admin.admin_master')
 @section('admin')
-    <div class="page-content">
-        <div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @Include('admin.galeri.navandfooter.galeri_nav')
 
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Galeri All </h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w5p">id</th>
+                                <th class="w10p">Category</th>
+                                <th class="w10p">Image</th>
+                                <th class="w15p">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php($id = 1)
+                            @foreach ($galeri as $item)
+                                <tr>
+                                    <td class="center">{{ $id++ }}</td>
+                                    <td class="center">{{ $item['category']['galeri_category'] }}</td>
+                                    <td class="center"><img src="{{ asset($item->galeri_image) }}" alt=""
+                                            style="width: 100px; height: 100px;"></td>
 
+                                    <td class="center">
 
+                                        <a href="{{ route('edit.galeri', $item->id) }}" name="edit"><i
+                                                class="glyphicon glyphicon-pencil"></i> Edit</a>
+                                        <a href="{{ route('delete.galeri', $item->id) }}"><i
+                                                class="glyphicon glyphicon-remove"></i>
+                                            Hapus</a>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
+                @include('admin.galeri.navandfooter.galeri_footer')
             </div>
-            <!-- end page title -->
-
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-
-                            <h4 class="card-title">Multi Image All</h4>
-
-                            <table id="datatable" class="table table-bordered dt-responsive nowrap"
-                                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                <thead>
-                                    <tr>
-                                        <th>SL</th>
-                                        <th>Galeri Name</th>
-                                        <th>Galeri Title</th>
-                                        <th>Galeri Image</th>
-                                        <th>Action</th>
-
-                                    </tr>
-                                </thead>
-
-
-                                <tbody>
-                                    @php($i = 1)
-                                    @foreach ($galeri as $item)
-                                        <tr>
-                                            <td>{{ $i++ }}</td>
-                                            <td>{{ $item->galeri_name }}</td>
-                                            <td>{{ $item->galeri_title }}</td>
-                                            <td><img
-                                                    src="{{ asset($item->galeri_image) }}"style="width: 60px; height: 50px;">
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('edit.galeri', $item->id) }}" class="btn btn-info sm"
-                                                    title="Edit Data"><i class="fas fa-edit"></i></a>
-
-                                                <a href="{{ route('delete.galeri', $item->id) }}" class="btn btn-danger sm"
-                                                    title="Delete Data" id="delete"><i class="fas fa-trash-alt"></i></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                </div> <!-- end col -->
-            </div> <!-- end row -->
-
-
-
-        </div> <!-- container-fluid -->
+        </div>
+    </div>
     </div>
 @endsection

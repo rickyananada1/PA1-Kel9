@@ -59,6 +59,7 @@ class LoginRequest extends FormRequest
      */
     public function ensureIsNotRateLimited(): void
     {
+        /**5 x batas masukkan psasword salah */
         if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
@@ -70,7 +71,7 @@ class LoginRequest extends FormRequest
         throw ValidationException::withMessages([
             'username' => trans('auth.throttle', [
                 'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
+                'minutes' => ceil($seconds / 60), //60 detik waktu tunggu
             ]),
         ]);
     }
@@ -80,6 +81,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->input('email')) . '|' . $this->ip());
+        return Str::transliterate(Str::lower($this->input('username')) . '|' . $this->ip());
     }
 }

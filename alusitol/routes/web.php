@@ -1,121 +1,127 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Illuminate\Http\RedirectResponse;
-use App\Http\Controllers\Home\HomeSliderController;
-use App\Http\Controllers\Home\AboutController;
-use App\Http\Controllers\Home\GaleriController;
-use App\Http\Controllers\Home\BeritaCategoryController;
-use App\Http\Controllers\Home\BeritaController;
-use App\Http\Controllers\Home\FooterController;
-use App\Http\Controllers\Home\AluAluController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeUserController;
+use App\Http\Controllers\AluAluController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\GaleriController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BeritaCategory;
+use App\Http\Controllers\GaleriCategoryController;
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\LayananCategoryController;
+use App\Http\Controllers\TentangDesaController;
+use App\Http\Controllers\PerangkatDesaController;
 
-
-
-
-//Route untuk Admin
-Route::middleware(['auth'])->group(function () {
-    // ...
-
-    Route::controller(AdminController::class)->group(function () {
-        Route::get('/admin/logout', 'destroy')->name('admin.logout');
-        Route::get('/admin/profile', 'Profile')->name('admin.profile');
-        Route::get('/edit/profile', 'EditProfile')->name('edit.profile');
-        Route::post('/store/profile', 'StoreProfile')->name('store.profile');
-
-        Route::get('/change/password', 'ChangePassword')->name('change.password');
-        Route::post('/update/password', 'UpdatePassword')->name('update.password');
-    });
-});
-//Route untuk Home
-Route::controller(HomeSliderController::class)->group(function () {
-    Route::get('/home/slide', 'HomeSlider')->name('home.slide');
-    Route::post('/update/slide', 'UpdateSlider')->name('update.slider');
-});
-//Route untuk About
-Route::controller(AboutController::class)->group(function () {
-    Route::get('/about/page', 'AboutPage')->name('about.page');
-    Route::post('/update/about', 'UpdateAbout')->name('update.about');
-    Route::get('/home/about', 'HomeAbout')->name('home.about');
-
-    Route::get('/about/multi/image', 'AboutMultiImage')->name('about.multi.image');
-    Route::post('/store/multi/image', 'StoreMultiImage')->name('store.multi.image');
-    Route::get('/all/multi/image', 'AllMultiImage')->name('all.multi.image');
-    Route::get('/edit/multi/image{id}', 'EditMultiImage')->name('edit.multi.image');
-
-    Route::post('/update/multi/image', 'UpdateMultiImage')->name('update.multi.image');
-    Route::get('/delete/multi/image{id}', 'DeleteMultiImage')->name('delete.multi.image');
-});
-
-//Galeri Route
-Route::controller(GaleriController::class)->group(function () {
-    Route::get('/all/galeri', 'AllGaleri')->name('all.galeri');
-    Route::get('/add/galeri', 'AddGaleri')->name('add.galeri');
-    Route::post('/store/galeri', 'StoreGaleri')->name('store.galeri');
-    Route::get('/edit/galeri{id}', 'EditGaleri')->name('edit.galeri');
-    Route::post('/update/galeri', 'UpdateGaleri')->name('update.galeri');
-    Route::get('/delete/galeri{id}', 'DeleteGaleri')->name('delete.galeri');
-    Route::get('/home/galeri', 'HomeGaleri')->name('home.galeri');
-
-    Route::get('/galeri/details{id}', 'GaleriDetails')->name('galeri.details');
-});
-
-//Route untuk  Category Berita
-Route::controller(BeritaCategoryController::class)->group(function () {
-    Route::get('/all/berita/category', 'AllBeritaCategory')->name('all.berita.category');
-    Route::get('/add/berita/category', 'AddBeritaCategory')->name('add.berita.category');
-    Route::post('/store/berita/category', 'StoreBeritaCategory')->name('store.berita.category');
-    Route::get('/edit/berita/category/{id}', 'EditBeritaCategory')->name('edit.berita.category');
-    Route::post('/update/berita/category/{id}', 'UpdateBeritaCategory')->name('update.berita.category');
-    Route::get('/delete/berita/category/{id}', 'DeleteBeritaCategory')->name('delete.berita.category');
-});
-//Route untuk Berita
-Route::controller(BeritaController::class)->group(function () {
-    Route::get('/all/berita', 'AllBerita')->name('all.berita');
-    Route::get('/add/berita', 'AddBerita')->name('add.berita');
-    Route::get('/edit/berita/{id}', 'EditBerita')->name('edit.berita');
-    Route::get('/delete/berita/{id}', 'DeleteBerita')->name('delete.berita');
-    Route::post('/store/berita', 'StoreBerita')->name('store.berita');
-    Route::post('/update/berita', 'UpdateBerita')->name('update.berita');
-
-    Route::get('/berita/details/{id}', 'BeritaDetails')->name('berita.details');
-    Route::get('/category/berita/{id}', 'CategoryBerita')->name('category.berita');
-    Route::get('/berita', 'HomeBerita')->name('home.berita');
-});
-
-//Route untuk Footer
-Route::controller(FooterController::class)->group(function () {
-    Route::get('/footer/setup', 'FooterSetup')->name('footer.setup');
-    Route::post('/update/footer', 'UpdateFooter')->name('update.footer');
-});
-
-//Route untuk Alu-Alu
-Route::controller(AluAluController::class)->group(function () {
-    Route::get('/alualu', 'AluAlu')->name('alualu.me');
-    Route::post('/store/alualu', 'StoreAluAlu')->name('store.alualu');
-    Route::get('/alualu/message', 'AluAluMessage')->name('alualu.message');
-    Route::get('/delete/alualu/{id}', 'DeleteAluAlu')->name('delete.alualu');
-});
-
-//Home
-Route::controller(HomeController::class)->group(function () {
-    Route::get('/', 'HomeMain')->name('home');
-});
-
-
-
-// Route::get('/', function () {
-//     return view('frontend.index');
-// });
 
 
 
 Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+
+    //Admin ALL Routes
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+        Route::get('/delete/alu/{id}', [AluAluController::class, 'DeleteAlu'])->name('delete.alu');
+        Route::get('/all/berita/admin', [BeritaController::class, 'AllBeritaAdmin'])->name('all.berita.admin');
+        Route::get('/add/berita', [BeritaController::class, 'AddBerita'])->name('add.berita');
+        Route::get('/edit/berita/{id}', [BeritaController::class, 'EditBerita'])->name('edit.berita');
+        Route::get('/delete/berita/{id}', [BeritaController::class, 'DeleteBerita'])->name('delete.berita');
+        Route::post('/updated/berita', [BeritaController::class, 'UpdatedBerita'])->name('updated.berita');
+        Route::get('/all/galeri/admin', [GaleriController::class, 'AllGaleriAdmin'])->name('all.galeri.admin');
+        Route::get('/add/galeri', [GaleriController::class, 'AddGaleri'])->name('add.galeri');
+        Route::get('/edit/galeri/{id}', [GaleriController::class, 'EditGaleri'])->name('edit.galeri');
+        Route::get('/all/layanan/admin', [LayananController::class, 'AllLayananAdmin'])->name('all.layanan.admin');
+        Route::get('/add/layanan', [LayananController::class, 'AddLayanan'])->name('add.layanan');
+        Route::post('/store/layanan', [LayananController::class, 'StoreLayanan'])->name('store.layanan');
+        Route::get('/edit/layanan/{id}', [LayananController::class, 'EditLayanan'])->name('edit.layanan');
+        Route::get('/delete/layanan/{id}', [LayananController::class, 'DeleteLayanan'])->name('delete.layanan');
+        Route::post('/updated/layanan', [LayananController::class, 'UpdatedLayanan'])->name('updated.layanan');
+        Route::get('/all/tentang/desa', [TentangDesaController::class, 'AllTentangDesa'])->name('all.tentang.desa');
+        Route::get('/add/tentang/desa', [TentangDesaController::class, 'AddTentangDesa'])->name('add.tentang.desa');
+        Route::post('/store/tentang/desa', [TentangDesaController::class, 'StoreTentangDesa'])->name('store.tentangdesa');
+        Route::get('/edit/tentangdesa/{id}', [TentangDesaController::class, 'EditTentangDesa'])->name('edit.tentangdesa');
+        Route::get('/delete/tentangdesa/{id}', [TentangDesaController::class, 'DeleteTentangDesa'])->name('delete.tentangdesa');
+        Route::post('/updated/tentangdesa', [TentangDesaController::class, 'UpdatedTentangDesa'])->name('updated.tentangdesa');
+        Route::get('/all/perangkat/desa', [PerangkatDesaController::class, 'AllPerangkatDesa'])->name('all.perangkat.desa');
+        Route::get('/add/perangkat/desa', [PerangkatDesaController::class, 'AddPerangkatDesa'])->name('add.perangkat.desa');
+        Route::post('/store/perangkat/desa', [PerangkatDesaController::class, 'StorePerangkatDesa'])->name('store.perangkatdesa');
+        Route::get('/edit/perangkat/{id}', [PerangkatDesaController::class, 'EditPerangkatDesa'])->name('edit.perangkatdesa');
+        Route::get('/delete/perangkat/{id}', [PerangkatDesaController::class, 'DeletePerangkatDesa'])->name('delete.perangkatdesa');
+        Route::post('/updated/perangkat', [PerangkatDesaController::class, 'UpdatedPerangkatDesa'])->name('updated.perangkatdesa');
+    });
+});
+
+//AluALU  ALL Routes
+Route::controller(AluAluController::class)->group(function () {
+    Route::get('/all/alu', [AluAluController::class, 'AllAlu'])->name('all.alu');
+    Route::get('/add/alu', [AluAluController::class, 'AddAlu'])->name('add.alu');
+    Route::post('/store/alu', [AluAluController::class, 'StoreAlu'])->name('store.alu');
+});
+//Berita  ALL Routes
+Route::controller(BeritaController::class)->group(function () {
+    Route::get('/all/berita', [BeritaController::class, 'AllBerita'])->name('all.berita');
+    Route::post('/store/berita', [BeritaController::class, 'StoreBerita'])->name('store.berita');
+    Route::get('/category/berita/{id}', 'CategoryBerita')->name('category.berita');
+    Route::get('/berita/details/{id}', 'BeritaDetails')->name('berita.details');
+});
+//Galeri  ALL Routes
+Route::controller(GaleriController::class)->group(function () {
+    Route::get('/all/galeri', [GaleriController::class, 'AllGaleriUser'])->name('all.galeri');
+    Route::post('/store/galeri', [GaleriController::class, 'StoreGaleri'])->name('store.galeri');
+    Route::post('/updated/galeri', [GaleriController::class, 'UpdatedGaleri'])->name('updated.galeri');
+    Route::get('/category/galeri/{id}', 'CategoryGaleri')->name('category.galeri');
+    Route::get('/delete/galeri/{id}', [GaleriController::class, 'DeleteGaleri'])->name('delete.galeri');
+});
+//Berita Category ALL Routes
+Route::controller(BeritaCategory::class)->group(function () {
+    Route::get('/all/category/berita', [BeritaCategory::class, 'AllCategory'])->name('all.category.berita');
+    Route::get('/add/berita/category', [BeritaCategory::class, 'AddBeritaCategory'])->name('add.berita.category');
+    Route::post('/store/berita/category', [BeritaCategory::class, 'StoreBeritaCategory'])->name('store.berita.category');
+    Route::get('/edit/berita/category/{id}', [BeritaCategory::class, 'EditBeritaCategory'])->name('edit.berita.category');
+    Route::post('/update/berita/category/{id}', [BeritaCategory::class, 'UpdateBeritaCategory'])->name('update.berita.category');
+    Route::get('/delete/berita/category/{id}', [BeritaCategory::class, 'DeleteBeritaCategory'])->name('delete.berita.category');
+});
+
+
+//Galeri Category ALL Routes`
+Route::controller(GaleriCategoryController::class)->group(function () {
+    Route::get('/all/category/galeri', [GaleriCategoryController::class, 'AllCategory'])->name('all.category.galeri');
+    Route::get('/add/galeri/category', [GaleriCategoryController::class, 'AddGaleriCategory'])->name('add.galeri.category');
+    Route::post('/store/galeri/category', [GaleriCategoryController::class, 'StoreGaleriCategory'])->name('store.galeri.category');
+    Route::get('/edit/galeri/category/{id}', [GaleriCategoryController::class, 'EditGaleriCategory'])->name('edit.galeri.category');
+    Route::post('/update/galeri/category/{id}', [GaleriCategoryController::class, 'UpdateGaleriCategory'])->name('update.galeri.category');
+    Route::get('/delete/galeri/category/{id}', [GaleriCategoryController::class, 'DeleteGaleriCategory'])->name('delete.galeri.category');
+});
+//layanan Category
+Route::controller(LayananCategoryController::class)->group(function () {
+    Route::get('/all/category', [LayananCategoryController::class, 'AllCategory'])->name('all.category.layanan');
+    Route::get('/add/layanan/category', [LayananCategoryController::class, 'AddLayananCategory'])->name('add.layanan.category');
+    Route::post('/store/layanan/category', [LayananCategoryController::class, 'StoreLayananCategory'])->name('store.layanan.category');
+    Route::get('/edit/layanan/category/{id}', [LayananCategoryController::class, 'EditLayananCategory'])->name('edit.layanan.category');
+    Route::post('/update/layanan/category/{id}', [LayananCategoryController::class, 'UpdateLayananCategory'])->name('update.layanan.category');
+    Route::get('/delete/layanan/category/{id}', [LayananCategoryController::class, 'DeleteLayananCategory'])->name('delete.layanan.category');
+});
+
+
+//Galeri Category ALL Routes`
+Route::controller(GaleriCategoryController::class)->group(function () {
+    Route::get('/all/category/galeri', [GaleriCategoryController::class, 'AllCategory'])->name('all.category.galeri');
+    Route::get('/add/galeri/category', [GaleriCategoryController::class, 'AddGaleriCategory'])->name('add.galeri.category');
+    Route::post('/store/galeri/category', [GaleriCategoryController::class, 'StoreGaleriCategory'])->name('store.galeri.category');
+    Route::get('/edit/galeri/category/{id}', [GaleriCategoryController::class, 'EditGaleriCategory'])->name('edit.galeri.category');
+    Route::post('/update/galeri/category/{id}', [GaleriCategoryController::class, 'UpdateGaleriCategory'])->name('update.galeri.category');
+    Route::get('/delete/galeri/category/{id}', [GaleriCategoryController::class, 'DeleteGaleriCategory'])->name('delete.galeri.category');
+});
+//User Home
+Route::controller(HomeUserController::class)->group(function () {
+    Route::get('/', [HomeUserController::class, 'HomeUser'])->name('home.user');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

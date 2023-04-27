@@ -1,128 +1,180 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8" />
-    <title>Register | Admin</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesdesign" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
+    <title>ALU Alu Of Sitoluama | REGISTER</title>
 
-    <!-- Bootstrap Css -->
-    <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet"
-        type="text/css" />
-    <!-- Icons Css -->
-    <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/bootstrap-responsive.min.css') }}">
 
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/font-awesome/css/font-awesome.min.css') }}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/style-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/style-default.css') }}" id="style_color">
+
+    <style>
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            color: black;
+        }
+
+        .box {
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .box a {
+            text-decoration: none;
+        }
+
+        .login-link {
+            color: blue;
+        }
+
+        .login-link:hover {
+            color: red;
+        }
+    </style>
 </head>
 
-<body class="auth-body-bg">
-    <div class="bg-overlay"></div>
-    <div class="wrapper-page">
-        <div class="container-fluid p-0">
-            <div class="card">
-                <div class="card-body">
-
-                    <div class="text-center mt-4">
-                        <div class="mb-3">
-                            <a href="index.html" class="auth-logo">
-                                <img src="{{ asset('backend/assets/images/logo-dark.png') }}" height="30"
-                                    class="logo-dark mx-auto" alt="">
-                                <img src="{{ asset('backend/assets/images/logo-light.png') }}" height="30"
-                                    class="logo-light mx-auto" alt="">
-                            </a>
-                        </div>
-                    </div>
-
-                    <h4 class="text-muted text-center font-size-18"><b>Register</b></h4>
-
-                    <div class="p-3">
-                        <form class="form-horizontal mt-3" method="POST" action="{{ route('register') }}">
-                            @csrf
-
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    <input class="form-control" type="text" name="name" id="name"
-                                        placeholder="Name">
-                                </div>
-                            </div>
+<body class="lock">
+    <div class="lock-header">
+        <!-- Logo -->
+        <a class="center" id="logo" href="{{ route('register') }}">
+            <img class="center" alt="ALU Alu Of Sitoluama" src="{{ asset('backend/assets/images/logo.png') }}" />
+        </a>
+    </div>
 
 
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    <input class="form-control" type="text" name="username" id="username"
-                                        placeholder="UserName">
-                                </div>
-                            </div>
+    <div class="login-wrap text-center">
+        <div class="metro single-size blue" style="margin-top: 3%">
+            <div class="locked">
+                <i class="fa fa-user"></i>
+                <span>REGISTER</span>
+            </div>
+        </div>
 
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    <input class="form-control" type="text" name="email" id="email"
-                                        placeholder="Email">
-                                </div>
-                            </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
 
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('register') }}">
+                                @csrf
 
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    <input class="form-control" type="password" name="password" id="password"
-                                        placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    <input class="form-control" type="password" name="password_confirmation"
-                                        id="password_confirmation" placeholder="Password Confirmation">
-                                </div>
-                            </div>
+                                <div class="form-group row">
+                                    <label for="name"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
+                                    <div class="col-md-6">
+                                        <input id="name" type="text"
+                                            class="form-control @error('name') is-invalid @enderror" name="name"
+                                            value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    <div class="custom-control custom-checkbox">
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
-                            </div>
+                                <div class="form-group row">
+                                    <label for="username"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('username') }}</label>
 
-                            <div class="form-group text-center row mt-3 pt-1">
-                                <div class="col-12">
-                                    <button class="btn btn-info w-100 waves-effect waves-light"
-                                        type="submit">Register</button>
-                                </div>
-                            </div>
+                                    <div class="col-md-6">
+                                        <input id="username" type="text"
+                                            class="form-control @error('username') is-invalid @enderror" name="username"
+                                            value="{{ old('username') }}" required autocomplete="username" autofocus>
 
-                            <div class="form-group mt-2 mb-0 row">
-                                <div class="col-12 mt-3 text-center">
-                                    <a href="{{ route('login') }}" class="text-muted">Already have account?</a>
+                                        @error('username')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                        <!-- end form -->
+
+                                <div class="form-group row">
+                                    <label for="email"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="email" type="email"
+                                            class="form-control @error('email') is-invalid @enderror" name="email"
+                                            value="{{ old('email') }}" required autocomplete="email">
+
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="password"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="password" type="password"
+                                            class="form-control @error('password') is-invalid @enderror" name="password"
+                                            required autocomplete="new-password">
+
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="password-confirm"
+                                        class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="password-confirm" type="password" class="form-control"
+                                            name="password_confirmation" required autocomplete="new-password">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mb-0">
+                                    <div class="form-group row mb-0">
+                                        <div class="col-md-6 offset-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('Register') }}
+                                            </button>
+                                            <a class="btn btn-warning" href="{{ url('/login') }}">
+                                                {{ __('Back') }}
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <!-- end cardbody -->
             </div>
-            <!-- end card -->
         </div>
-        <!-- end container -->
-    </div>
-    <!-- end -->
 
 
-    <!-- JAVASCRIPT -->
-    <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
-
-    <script src="{{ asset('backend/assets/js/app.js') }}"></script>
-
+        <!-- jQuery -->
+        <script src="{{ asset('backend/assets/js/jquery.min.js') }}"></script>
+        <!-- Bootstrap JS -->
+        <script src="{{ asset('backend/assets/js/bootstrap.min.js') }}"></script>
 </body>
 
 </html>
