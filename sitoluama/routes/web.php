@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\Admin\LayananController;
 use App\Http\Controllers\Admin\LayananCategoryController;
 use App\Http\Controllers\Admin\TentangDesaController;
+use App\Http\Controllers\Admin\PerangkatDesaController;
+
 
 
 
@@ -99,11 +101,11 @@ Route::controller(TentangDesaController::class)->group(function () {
     Route::post('/update/tentangdesa', 'UpdateTentangDesa')->name('update.tentang.desa');
 });
 //Route Admin untuk Perangkat Desa
-Route::controller(TentangDesaController::class)->group(function () {
-    Route::get('/all/tentangdesa', 'AllTentangDesa')->name('all.tentang.desa');
-    Route::get('/add/tentangdesa', 'AddTentangDesa')->name('add.tentang.desa');
-    Route::post('/store/tentangdesa', 'StoreTentangDesa')->name('store.tentang.desa');
-    Route::get('/edit/tentangdesa/{id}', 'EditTentangDesa')->name('edit.tentang.desa');
-    Route::get('/delete/tentangdesa/{id}', 'DeleteTentangDesa')->name('delete.tentang.desa');
-    Route::post('/update/tentangdesa', 'UpdateTentangDesa')->name('update.tentang.desa');
+Route::controller(PerangkatDesaController::class)->group(function () {
+    Route::get('/all/perangkatdesa', 'AllPerangkatDesa')->name('all.perangkat.desa');
+    Route::get('/add/perangkatdesa', 'AddPerangkatDesa')->name('add.perangkat.desa');
+    Route::post('/store/perangkatdesa', 'StorePerangkatDesa')->name('store.perangkat.desa');
+    Route::get('/edit/perangkatdesa/{id}', 'EditPerangkatDesa')->name('edit.perangkat.desa');
+    Route::get('/delete/perangkatdesa/{id}', 'DeletePerangkatDesa')->name('delete.perangkat.desa');
+    Route::post('/update/perangkatdesa', 'UpdatePerangkatDesa')->name('update.perangkat.desa');
 });

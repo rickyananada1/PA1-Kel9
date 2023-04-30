@@ -12,7 +12,7 @@
 
         <li>
             <a href="calendar.html" class=" waves-effect">
-                <i class="ri-calendar-2-line"></i>
+                <i class="fab fa-twitch"></i>
                 <span>Alu - Alu</span>
             </a>
         </li>
@@ -34,8 +34,8 @@
                 <li class="">
                     <a href="javascript: void(0);" class="has-arrow" aria-expanded="false">Perangkat Desa</a>
                     <ul class="sub-menu mm-collapse" aria-expanded="true" style="height: 0px;">
-                        <li><a href="layouts-horizontal.html">ALL Perangkat Desa</a></li>
-                        <li><a href="layouts-hori-topbar-light.html">Add Perangkat Desa</a></li>
+                        <li><a href="{{ route('all.perangkat.desa') }}">ALL Perangkat Desa</a></li>
+                        <li><a href="{{ route('add.perangkat.desa') }}">Add Perangkat Desa</a></li>
                     </ul>
                 </li>
             </ul>
@@ -65,7 +65,7 @@
         </li>
         <li>
             <a href="#" class="has-arrow waves-effect">
-                <i class="ri-mail-send-line"></i>
+                <i class="mdi mdi-folder-multiple-image"></i>
                 <span>Galeri</span>
             </a>
             <ul class="sub-menu" aria-expanded="true">
@@ -75,7 +75,7 @@
         </li>
         <li>
             <a href="#" class="has-arrow waves-effect">
-                <i class="ri-mail-send-line"></i>
+                <i class="mdi mdi-folder-multiple-plus"></i>
                 <span>Kategori Galeri</span>
             </a>
             <ul class="sub-menu" aria-expanded="true">
@@ -85,7 +85,7 @@
         </li>
         <li>
             <a href="#" class="has-arrow waves-effect">
-                <i class="ri-mail-send-line"></i>
+                <i class="fab fa-stripe-s"></i>
                 <span>Layanan</span>
             </a>
             <ul class="sub-menu" aria-expanded="true">
@@ -96,7 +96,7 @@
         <li>
         <li>
             <a href="#" class="has-arrow waves-effect">
-                <i class="ri-mail-send-line"></i>
+                <i class=" fab fa-slack-hash"></i>
                 <span>Kategori Layanan</span>
             </a>
             <ul class="sub-menu" aria-expanded="true">
