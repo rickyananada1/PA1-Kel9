@@ -9,25 +9,90 @@ use App\Http\Controllers\Admin\LayananController;
 use App\Http\Controllers\Admin\LayananCategoryController;
 use App\Http\Controllers\Admin\TentangDesaController;
 use App\Http\Controllers\Admin\PerangkatDesaController;
+use App\Http\Controllers\User\HomeUserController;
+use App\Http\Controllers\User\TentangDesaControllerU;
+use App\Http\Controllers\User\BeritaControllerU;
+use App\Http\Controllers\User\LayananControllerU;
+use App\Http\Controllers\User\GaleriControllerU;
+use App\Http\Controllers\User\AluAluControllerU;;
+
+use App\Http\Controllers\Admin\AdminDashboardController;
+
+
+use App\Http\Controllers\ProfileController;
 
 
 
 
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+/**Route Authentication */
 
 Route::get('/', function () {
-    return view('admin.index');
+    return view('welcome');
+});
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';
+
+/**End */
+
+
+
+
+/**START ROUTE FOR FRONTEND */
+
+
+//Route  untuk Home User
+Route::controller(HomeUserController::class)->group(function () {
+    Route::get('/', 'HomeIndex')->name('home.index');
+});
+
+//Route  untuk Tentang Desa User
+Route::controller(TentangDesaControllerU::class)->group(function () {
+    Route::get('/tentang/desa/', 'TentangDesa')->name('tentang.desa');
+});
+
+//Route  untuk Berita Desa User
+Route::controller(BeritaControllerU::class)->group(function () {
+    Route::get('/berita', 'Berita')->name('berita');
+    Route::get('/single/berita', 'SingleBerita')->name('single.berita');
+    Route::get('/all/category/{id}', 'AllCategory')->name('all.category');
+});
+//Route  untuk Layanan Desa User
+Route::controller(LayananControllerU::class)->group(function () {
+    Route::get('/layanan', 'Layanan')->name('layanan');
+});
+
+//Route  untuk Galeri Desa User
+Route::controller(GaleriControllerU::class)->group(function () {
+    Route::get('/galeri', 'Galeri')->name('galeri');
+});
+//Route  untuk AluAlu Desa User
+Route::controller(AluAluControllerU::class)->group(function () {
+    Route::get('/alualu', 'AluAlu')->name('alualu');
+});
+
+
+
+/**END ROUTE FOR FRONTEND */
+
+
+
+
+/** START ROUTE FOR ADMIN **/
+
+//Route Admin untu Dashboard
+Route::controller(AdminDashboardController::class)->group(function () {
+    Route::get('/dashboard/admin', 'Dashboard')->name('home.admin');
 });
 
 //Route Admin untuk Category Berita

@@ -16,28 +16,25 @@
                 <span>Alu - Alu</span>
             </a>
         </li>
-        <li class="mm-active">
-            <a href="javascript: void(0);" class="has-arrow waves-effect" aria-expanded="true">
-                <i class="ri-layout-3-line"></i>
+
+        <li>
+            <a href="#" class="has-arrow waves-effect">
+                <i class="ri-article-line"></i>
                 <span>Tentang Desa</span>
             </a>
-            <ul class="sub-menu mm-collapse mm-show" aria-expanded="true" style="">
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow" aria-expanded="false">Tentang Desa</a>
-                    <ul class="sub-menu mm-collapse" aria-expanded="true">
-                        <li><a href="{{ route('all.tentang.desa') }}">All Tentang Desa</a></li>
-                        <li><a href="{{ route('add.tentang.desa') }}">Add Tentang Desa</a></li>
-
-                    </ul>
-                </li>
-
-                <li class="">
-                    <a href="javascript: void(0);" class="has-arrow" aria-expanded="false">Perangkat Desa</a>
-                    <ul class="sub-menu mm-collapse" aria-expanded="true" style="height: 0px;">
-                        <li><a href="{{ route('all.perangkat.desa') }}">ALL Perangkat Desa</a></li>
-                        <li><a href="{{ route('add.perangkat.desa') }}">Add Perangkat Desa</a></li>
-                    </ul>
-                </li>
+            <ul class="sub-menu" aria-expanded="true">
+                <li><a href="{{ route('all.tentang.desa') }}">All Tentang Desa</a></li>
+                <li><a href="{{ route('add.tentang.desa') }}">Add Tentang Desa</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="has-arrow waves-effect">
+                <i class="ri-article-line"></i>
+                <span>Perangkat Desa</span>
+            </a>
+            <ul class="sub-menu" aria-expanded="true">
+                <li><a href="{{ route('all.perangkat.desa') }}">ALL Perangkat Desa</a></li>
+                <li><a href="{{ route('add.perangkat.desa') }}">Add Perangkat Desa</a></li>
             </ul>
         </li>
         <!--Berita-->

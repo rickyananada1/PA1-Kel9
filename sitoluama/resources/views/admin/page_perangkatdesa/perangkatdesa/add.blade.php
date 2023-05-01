@@ -11,9 +11,31 @@
                             <form action="{{ route('store.perangkat.desa') }}" method="POST"enctype="multipart/form-data">
                                 @csrf
                                 <div class="row mb-3">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label">Profil Perangkat</label>
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">Nama </label>
                                     <div class="col-sm-10">
-                                        <textarea id="konten" name="profilperangkat">
+                                        <input class="form-control"name="nama" type="text" id="text">
+
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label"> Jabatan</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control"name="jabatan" type="text" id="text">
+
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label"> Masa Jabatan</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control"name="masajabatan" type="text" id="text">
+
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">
+                                        Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="konten" name="deskripsi">
                                         </textarea>
                                     </div>
                                 </div>

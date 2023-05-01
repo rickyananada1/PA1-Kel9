@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('perangkatdesas', function (Blueprint $table) {
             $table->id();
             $table->string('fotoperangkat');
-            $table->text('profilperangkat')->nullable();
+            $table->string('nama');
+            $table->string('jabatan');
+            $table->string('masajabatan');
             $table->timestamps();
         });
     }

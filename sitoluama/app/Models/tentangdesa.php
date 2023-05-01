@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class tentangdesa extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['id', 'tentangdesa', 'visimisi', 'created_at', 'updated_at'];
 }

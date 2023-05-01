@@ -24,7 +24,9 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Foto Perangkat</th>
-                                        <th>Profil Perangkat </th>
+                                        <th>Nama </th>
+                                        <th>Jabatan </th>
+                                        <th>Masa Jabatan </th>
                                         <th>Action</th>
 
                                     </tr>
@@ -36,7 +38,9 @@
                                             <td>{{ $item->id }}</td>
                                             <td><img src="{{ asset($item->fotoperangkat) }}"S
                                                     style="width: 60px; height: 50px;"></td>
-                                            <td>{!! $item->profilperangkat !!}</td>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->jabatan }}</td>
+                                            <td>{{ $item->masajabatan }}</td>
                                             <td>
                                                 <a href="{{ route('edit.perangkat.desa', $item->id) }}"
                                                     class="btn btn-info sm" title="Edit Data"><i

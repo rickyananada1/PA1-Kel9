@@ -173,7 +173,7 @@
     </script>
 
     <!-- CKEditor -->
-    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+    <script src="{{ asset('backend/assets/js/ckeditor.js') }}"></script>
     <script>
         CKEDITOR.replace('konten');
         CKEDITOR.replace('konten2');

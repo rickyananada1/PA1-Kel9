@@ -7,16 +7,41 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Edit Perangkat Desa Page</h4>
-                            <form action="{{ route('update.perangkat.desa') }}" method="POST"enctype="multipart/form-data">
+                            <h4 class="card-title">Add Perangkat Desa Page</h4>
+                            <form action="{{ route('store.perangkat.desa') }}" method="POST"enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $perangkatdesa->id }}">
+
                                 <div class="row mb-3">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label">Profil Perangkat</label>
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">Nama </label>
                                     <div class="col-sm-10">
-                                        <textarea id="konten" name="profilperangkat">
-                                            {!! $perangkatdesa->profilperangkat !!}
-                                        </textarea>
+                                        <input class="form-control"name="nama" type="text" id="text"
+                                            value="{{ $perangkatdesa->nama }}">
+
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label"> Jabatan</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control"name="jabatan" type="text" id="text"
+                                            value="{{ $perangkatdesa->jabatan }}">
+
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label"> Masa Jabatan</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control"name="masajabatan" type="text" id="text"
+                                            value="{{ $perangkatdesa->masajabatan }}">
+
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="example-text-input" class="col-sm-2 col-form-label">
+                                        Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="konten" name="deskripsi">
+                                            {{ $perangkatdesa->Deskripsi }}                                        </textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -30,10 +55,8 @@
                                     <label for="example-text-input" class="col-sm-2 col-form-label"></label>
 
                                     <div class="col-sm-10">
-                                        <div class="col-sm-10">
-                                            <img class="rounded avatar-lg" id="showImage"
-                                                src="{{ asset($perangkatdesa->fotoperangkat) }}" alt="Card image cap">
-                                        </div>
+                                        <img class="rounded avatar-lg"id="showImage"
+                                            src="{{ asset($perangkatdesa->fotoperangkat) }}" alt="Card image cap">
                                     </div>
                                 </div>
                                 <input

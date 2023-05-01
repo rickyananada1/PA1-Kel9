@@ -35,11 +35,14 @@ class PerangkatDesaController extends Controller
         $image = $request->file('fotoperangkat');
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); //ngambil nama file
 
-        Image::make($image)->resize(827, 413)->save('upload/perangkatdesa/' . $name_gen); //panjanglebar
+        Image::make($image)->resize(401, 401)->save('upload/perangkatdesa/' . $name_gen); //panjanglebar
         $save_url = 'upload/perangkatdesa/' . $name_gen;
 
         perangkatdesa::insert([
-            'profilperangkat' => $request->profilperangkat,
+            'nama' => $request->nama,
+            'jabatan' => $request->jabatan,
+            'masajabatan' => $request->masajabatan,
+            'Deskripsi' => $request->deskripsi,
             'fotoperangkat' => $save_url,
             'created_at' => Carbon::now(),
 
@@ -75,7 +78,9 @@ class PerangkatDesaController extends Controller
         $save_url = 'upload/perangkatdesa/' . $name_gen;
 
         perangkatdesa::findOrFail($perangkatdesa_id)->update([
-            'profilperangkat' => $request->profilperangkat,
+            'nama' => $request->nama,
+            'jabatan' => $request->jabatan,
+            'masajabatan' => $request->masajabatan,
             'fotoperangkat' => $save_url,
             'updated_at' => Carbon::now(),
 
