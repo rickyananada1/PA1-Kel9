@@ -20,7 +20,7 @@
         <li class="mm-active">
             <a href="javascript:void(0);" class="has-arrow waves-effect" aria-expanded="true">
                 <i class="ri-layout-3-line"></i>
-                <span>Info Desa</span>
+                <span>Tentang Desa</span>
             </a>
             <ul class="sub-menu mm-show">
                 <li>
@@ -98,21 +98,21 @@
         <li>
             <a href="#" class="has-arrow waves-effect">
                 <i class="fab fa-stripe-s"></i>
-                <span>Jelajah Desa</span>
+                <span>Layanan Desa</span>
             </a>
             <ul class="sub-menu">
-                <li><a href="{{ route('all.layanan') }}">Semua Jelajah Desa</a></li>
-                <li><a href="{{ route('add.layanan') }}">Tambahkan Jelajah Desa</a></li>
+                <li><a href="{{ route('all.layanan') }}">Semua Layanan Desa</a></li>
+                <li><a href="{{ route('add.layanan') }}">Tambahkan Layanan Desa</a></li>
             </ul>
         </li>
         <li>
             <a href="#" class="has-arrow waves-effect">
                 <i class="fab fa-slack-hash"></i>
-                <span>Kategori Jelajah Desa</span>
+                <span>Kategori Layanan Desa</span>
             </a>
             <ul class="sub-menu">
-                <li><a href="{{ route('all.layanan.category') }}">Semua Kategori Jelajah Desa</a></li>
-                <li><a href="{{ route('add.layanan.category') }}">Tambahkan Kategori Jelajah Desa</a></li>
+                <li><a href="{{ route('all.layanan.category') }}">Semua Kategori Layanan Desa</a></li>
+                <li><a href="{{ route('add.layanan.category') }}">Tambahkan Kategori Layanan Desa</a></li>
             </ul>
         </li>
     </ul>

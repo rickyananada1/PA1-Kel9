@@ -21,8 +21,10 @@
                     <div class="about__content">
                         <div class="section__title">
                             <span class="sub-title">Tentang Desa</span>
-                            <h2 class="title">Tentang Desa Mambahas Tu Desa Sitoluama</h2>
+                            <h2 class="title">Tentang Desa Membahas Desa Sitoluama</h2>
                         </div>
+
+                        <img src="{{ asset('front/assets/img/garry.gif') }}" alt="" width="40%">
                         <div class="about__exp">
 
                             <div class="about__exp__content">
@@ -34,10 +36,8 @@
                         </p>
                     </div>
                 @endforeach
-
             </div>
         </div>
-
         </div>
     </section>
 @endsection

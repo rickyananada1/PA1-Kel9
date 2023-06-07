@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\alualu;
+use Illuminate\Support\Carbon;
+use App\Models\berita;
+use App\Models\galeri;
+use App\Models\layanan;
 
 class AdminController extends Controller
 {
@@ -15,8 +19,28 @@ class AdminController extends Controller
 
     public function Dashboard()
     {
-        $alualu = alualu::latest()->paginate(10);
-        return view('admin.page_alualu.all', compact('alualu'));
+        $currentDate = Carbon::now()->format('Y-m-d'); // Mengambil tanggal saat ini
+        //Alualu
+        $alualu = alualu::latest()->get(); // Mengambil semua data alu alu
+        $alualuhariini = alualu::whereDate('created_at', $currentDate)->count(); // Mengambil alu alu yang dibuat pada tanggal saat ini
+        $countAlualu = $alualu->count(); // Mendapatkan jumlah alu alu pada tanggal saat ini
+
+        //berita
+        $berita = berita::latest()->get(); // Mengambil semua data alu alu
+        $beritahariini = berita::whereDate('created_at', $currentDate)->count(); // Mengambil alu alu yang dibuat pada tanggal saat ini
+        $countberita = $berita->count(); // Mendapatkan jumlah alu alu pada tanggal saat ini
+
+        //Galeri
+        $galeri = galeri::latest()->get(); // Mengambil semua data alu alu
+        $galerihariini = galeri::whereDate('created_at', $currentDate)->count(); // Mengambil alu alu yang dibuat pada tanggal saat ini
+        $countgaleri = $galeri->count(); // Mendapatkan jumlah alu alu pada tanggal saat ini
+
+        //layanan
+        $layanan = layanan::latest()->get(); // Mengambil semua data alu alu
+        $layananhariini = layanan::whereDate('created_at', $currentDate)->count(); // Mengambil alu alu yang dibuat pada tanggal saat ini
+        $countlayanan = $layanan->count(); // Mendapatkan jumlah alu alu pada tanggal saat ini
+
+        return view('admin.index', compact('alualu', 'countAlualu', 'alualuhariini', 'galeri', 'countgaleri', 'galerihariini', 'berita', 'countberita', 'beritahariini', 'layanan', 'countlayanan', 'layananhariini'));
     }
     public function Login(Request $request)
     {

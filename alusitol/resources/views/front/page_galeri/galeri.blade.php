@@ -14,17 +14,19 @@
 
         <!-- ======= Events Section ======= -->
         <section id="events" class="events">
-            <div class="container" data-aos="fade-up">
+            <div class="container" data-aos="fade-up-left">
                 <div class="row">
                     @foreach ($galeri as $item)
                         <div class="col-md-3 d-flex align-items-stretch">
                             <div class="card">
                                 <div class="card-img">
-                                    <img src="{{ asset($item->galeri_image) }}" alt="...">
+                                    <a href="{{ asset($item->galeri_image) }}" data-lightbox="image-gallery"><img
+                                            src="{{ asset($item->galeri_image) }}" alt="..."></a>
                                 </div>
                             </div>
                         </div>
                     @endforeach
+
                 </div>
                 {{ $galeri->onEachSide(1)->links('pagination::bootstrap-5') }}
 

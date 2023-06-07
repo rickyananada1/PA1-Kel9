@@ -21,7 +21,7 @@
                     <div class="about__content">
                         <div class="section__title">
                             <span class="sub-title">Sejarah Desa</span>
-                            <h2 class="title">Sejarah Desa Mambahas Tu Desa Sitoluama</h2>
+                            <h2 class="title">Sejarah Desa Membahas Desa Sitoluama</h2>
                         </div>
                         <div class="about__exp">
 
@@ -40,7 +40,4 @@
 
         </div>
     </section>
-
-
-    @include('front.body.footer')
 @endsection

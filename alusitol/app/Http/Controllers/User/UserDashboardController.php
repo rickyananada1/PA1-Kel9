@@ -15,10 +15,11 @@ class UserDashboardController extends Controller
     public function Dashboard()
     {
         $galeri = galeri::oldest()->paginate(8);
-        $category = beritaCategorym::orderBy('berita_category')->paginate(4);
+        $category = beritaCategorym::orderBy('berita_category')->paginate(5);
         $alualu = alualu::latest()->paginate(3);
-        $categoryJ = LayananCategorym::orderBy('layanan_category', 'desc')->paginate(3);
+        $categoryJ = LayananCategorym::orderBy('layanan_category', 'desc')->paginate(5);
+        $categoryJJ = LayananCategorym::orderBy('layanan_category', 'desc')->paginate(3);
         $berita = berita::latest()->paginate(3);
-        return view('front.index', compact('category', 'categoryJ', 'alualu', 'berita', 'galeri'));
+        return view('front.index', compact('category', 'categoryJ', 'alualu', 'berita', 'galeri', 'categoryJJ'));
     }
 }

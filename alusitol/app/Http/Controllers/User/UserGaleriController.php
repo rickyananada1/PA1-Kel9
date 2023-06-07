@@ -13,7 +13,7 @@ class UserGaleriController extends Controller
     public function Galeri()
     {
         $category = beritaCategorym::orderBy('berita_category')->paginate(5);
-        $galeri = galeri::oldest()->paginate(8);
+        $galeri = galeri::latest()->paginate(12);
         $categoryJ = layanancategorym::orderBy('layanan_category', 'ASC')->paginate(5);
         return view('front.page_galeri.galeri', compact('galeri', 'category', 'categoryJ'));
     }

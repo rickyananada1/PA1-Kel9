@@ -5,9 +5,9 @@
         <div class="container">
             <ol>
                 <li><a href="{{ route('home.user') }}">Home</a></li>
-                <li>Jelajah Desa</li>
+                <li>Layanan Desa</li>
             </ol>
-            <h2>Jelajah Desa</h2>
+            <h2>Layanan Desa</h2>
         </div>
     </section>
 

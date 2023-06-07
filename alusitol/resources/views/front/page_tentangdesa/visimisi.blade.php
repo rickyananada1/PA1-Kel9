@@ -21,7 +21,7 @@
                     <div class="about__content">
                         <div class="section__title">
                             <span class="sub-title">Visi Misi</span>
-                            <h2 class="title">Visi Misi Mambahas Tu Desa Sitoluama</h2>
+                            <h2 class="title">Visi Misi Membahas Desa Sitoluama</h2>
                         </div>
                         <div class="about__exp">
 

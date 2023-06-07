@@ -808,28 +808,37 @@ body[data-aos-easing="ease-in-out-quart"] [data-aos] {
 }
 [data-aos="fade-up"] {
     transform: translate3d(0, 100px, 0);
+    transition-duration: 1s;
 }
 [data-aos="fade-down"] {
     transform: translate3d(0, -100px, 0);
+    transition-duration: 1s;
 }
 [data-aos="fade-right"] {
     transform: translate3d(-100px, 0, 0);
+    transition-duration: 1s;
 }
 [data-aos="fade-left"] {
     transform: translate3d(100px, 0, 0);
+    transition-duration: 1s;
 }
 [data-aos="fade-up-right"] {
     transform: translate3d(-100px, 100px, 0);
+    transition-duration: 1s;
 }
 [data-aos="fade-up-left"] {
     transform: translate3d(100px, 100px, 0);
+    transition-duration: 1s;
 }
 [data-aos="fade-down-right"] {
     transform: translate3d(-100px, -100px, 0);
+    transition-duration: 1s;
 }
 [data-aos="fade-down-left"] {
     transform: translate3d(100px, -100px, 0);
+    transition-duration: 1s;
 }
+
 [data-aos^="zoom"][data-aos^="zoom"] {
     opacity: 0;
     transition-property: opacity, transform;

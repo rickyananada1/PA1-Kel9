@@ -22,7 +22,7 @@
                     <section id="values" class="values">
                         <div class="container">
                             <div class="row">
-                                @foreach ($categoryJ as $item)
+                                @foreach ($categoryJJ as $item)
                                     <div class="col-md-4 d-flex align-items-stretch aos-init aos-animate"
                                         data-aos="fade-up">
                                         <div class="card"

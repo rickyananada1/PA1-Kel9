@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('to');
             $table->string('from');
             $table->string('isi');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamp('last_usage')->nullable();
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

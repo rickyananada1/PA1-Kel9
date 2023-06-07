@@ -62,7 +62,9 @@ Route::controller(UserGaleriController::class)->group(function () {
 /*Route User untuk Alu Alu*/
 Route::controller(UserAlualuController::class)->group(function () {
     Route::get('/alualu', 'Alualu')->name('alualu.user');
-    Route::post('/store/alualuu', 'StoreAluAluu')->name('store.alualuu')->middleware(['auth']);
+    Route::post('/store/alualuu', 'StoreAluAluu')->name('store.alualuu')->middleware(['auth', 'alu.alu.usage']);
+    Route::get('/alualu/search/', 'SearchAluAlu')->name('search.alualu');
+    Route::get('alualu/filter', 'filter')->name('alualu.filter');
 });
 
 

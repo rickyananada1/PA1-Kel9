@@ -40,15 +40,6 @@
                         <form class="form-horizontal mt-3" method="POST" action="{{ route('register') }}">
                             @csrf
 
-                            <!-- Name -->
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-
-                                    <x-text-input id="name" class="form-control" type="text" name="name"
-                                        placeholder="Name" :value="old('name')" required autofocus autocomplete="name" />
-                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                                </div>
-                            </div>
 
 
                             <!-- Username -->
@@ -62,15 +53,6 @@
                                 </div>
                             </div>
 
-                            <!-- Email Address -->
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-
-                                    <x-text-input id="email" class="form-control" type="email" name="email"
-                                        placeholder="Email" :value="old('email')" required autocomplete="username" />
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                </div>
-                            </div>
 
                             <!-- Password -->
                             <div class="form-group mb-3 row">

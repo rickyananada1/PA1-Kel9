@@ -11,7 +11,7 @@
     </section>
 
 
-    <section id="blog" class="blog">
+    <section id="blog" class="blog" data-aos="fade-up">
         <div class="container aos-init aos-animate" data-aos="fade-up">
 
             <div class="row">

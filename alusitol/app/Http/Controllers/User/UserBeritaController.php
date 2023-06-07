@@ -50,8 +50,11 @@ class UserBeritaController extends Controller
             $category = beritaCategorym::orderBy('berita_category', 'ASC')->paginate(5);
             return view('front.page_berita.berita', compact('berita', 'beritarecent', 'category', 'categoryJ'));
         } else {
-            $berita = berita::all()->paginate(5);
+            $berita = berita::paginate(5);
+            $beritarecent = berita::latest()->paginate(8);
+            $categoryJ = layanancategorym::orderBy('layanan_category', 'ASC')->paginate(5);
+            $category = beritaCategorym::orderBy('berita_category', 'ASC')->paginate(5);
         }
-        return view('front.page_berita.berita', compact('berita'));
+        return view('front.page_berita.berita', compact('berita', 'beritarecent', 'category', 'categoryJ'));
     }
 }
