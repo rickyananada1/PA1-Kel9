@@ -7,10 +7,6 @@ use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\Admin\LayananController;
 use App\Http\Controllers\Admin\LayananCategoryController;
 use App\Http\Controllers\Admin\TentangDesaController;
-use App\Http\Controllers\Admin\SejarahDesaController;
-use App\Http\Controllers\Admin\PerangkatDesaController;
-use App\Http\Controllers\Admin\VisiMisiController;
-use App\Http\Controllers\Admin\GeografisController;
 use App\Http\Controllers\Admin\AluAluController;
 
 use App\Http\Controllers\User\UserDashboardController;
@@ -34,10 +30,6 @@ Route::controller(UserDashboardController::class)->group(function () {
 /*Route User untuk TentangDesa*/
 Route::controller(UserTentangDesaController::class)->group(function () {
     Route::get('/tentang/desa', 'TentangDesa')->name('tentangdesa.user');
-    Route::get('/sejarah/desa', 'SejarahDesa')->name('sejarahdesa.user');
-    Route::get('/visi/misi/desa', 'VisiMisiDesa')->name('visimisi.user');
-    Route::get('/geografis/desa', 'GeografisDesa')->name('geografis.user');
-    Route::get('/perangkat/desa', 'PerangkatDesa')->name('perangkatdesa.user');
 });
 
 /*Route User untuk Layanan*/
@@ -155,42 +147,5 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/tentangdesa/{id}', 'EditTentangDesa')->name('edit.tentang.desa');
         Route::get('/delete/tentangdesa/{id}', 'DeleteTentangDesa')->name('delete.tentang.desa');
         Route::post('/update/tentangdesa', 'UpdateTentangDesa')->name('update.tentang.desa');
-    });
-
-    //Route Admin untuk Sejarah Desa
-    Route::controller(SejarahDesaController::class)->group(function () {
-        Route::get('/all/sejarahdesa', 'AllSejarahDesa')->name('all.sejarah.desa');
-        Route::get('/add/sejarahdesa', 'AddSejarahDesa')->name('add.sejarah.desa');
-        Route::post('/store/sejarahdesa', 'StoreSejarahDesa')->name('store.sejarah.desa');
-        Route::get('/edit/sejarahdesa/{id}', 'EditSejarahDesa')->name('edit.sejarah.desa');
-        Route::get('/delete/sejarahdesa/{id}', 'DeleteSejarahDesa')->name('delete.sejarah.desa');
-        Route::post('/update/sejarahdesa', 'UpdateSejarahDesa')->name('update.sejarah.desa');
-    });
-    //Route Admin untuk VisiMisi Desa
-    Route::controller(VisiMisiController::class)->group(function () {
-        Route::get('/all/visimisi', 'AllVisiMisi')->name('all.visimisi.desa');
-        Route::get('/add/visimisi', 'AddVisiMisi')->name('add.visimisi.desa');
-        Route::post('/store/visimisi', 'StoreVisiMisi')->name('store.visimisi.desa');
-        Route::get('/edit/visimisi/{id}', 'EditVisiMisi')->name('edit.visimisi.desa');
-        Route::get('/delete/visimisi/{id}', 'DeleteVisiMisi')->name('delete.visimisi.desa');
-        Route::post('/update/visimisi', 'UpdateVisiMisi')->name('update.visimisi.desa');
-    });
-    //Route Admin untuk Geografis Desa
-    Route::controller(GeografisController::class)->group(function () {
-        Route::get('/all/Geografis', 'AllGeografis')->name('all.geografis.desa');
-        Route::get('/add/Geografis', 'AddGeografis')->name('add.geografis.desa');
-        Route::post('/store/Geografis', 'StoreGeografis')->name('store.geografis.desa');
-        Route::get('/edit/Geografis/{id}', 'EditGeografis')->name('edit.geografis.desa');
-        Route::get('/delete/Geografis/{id}', 'DeleteGeografis')->name('delete.geografis.desa');
-        Route::post('/update/Geografis', 'UpdateGeografis')->name('update.geografis.desa');
-    });
-    //Route Admin untuk Perangkat Desa
-    Route::controller(PerangkatDesaController::class)->group(function () {
-        Route::get('/all/perangkatdesa', 'AllPerangkatDesa')->name('all.perangkat.desa');
-        Route::get('/add/perangkatdesa', 'AddPerangkatDesa')->name('add.perangkat.desa');
-        Route::post('/store/perangkatdesa', 'StorePerangkatDesa')->name('store.perangkat.desa');
-        Route::get('/edit/perangkatdesa/{id}', 'EditPerangkatDesa')->name('edit.perangkat.desa');
-        Route::get('/delete/perangkatdesa/{id}', 'DeletePerangkatDesa')->name('delete.perangkat.desa');
-        Route::post('/update/perangkatdesa', 'UpdatePerangkatDesa')->name('update.perangkat.desa');
     });
 });

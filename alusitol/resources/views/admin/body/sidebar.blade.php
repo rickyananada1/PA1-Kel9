@@ -17,49 +17,11 @@
             </a>
         </li>
 
-        <li class="mm-active">
-            <a href="javascript:void(0);" class="has-arrow waves-effect" aria-expanded="true">
-                <i class="ri-layout-3-line"></i>
+        <li>
+            <a href="{{ route('all.tentang.desa') }}" class="waves-effect">
+                <i class="fab fa-twitch"></i>
                 <span>Tentang Desa</span>
             </a>
-            <ul class="sub-menu mm-show">
-                <li>
-                    <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">Tentang Desa</a>
-                    <ul class="sub-menu">
-                        <li><a href="{{ route('all.tentang.desa') }}">All Tentang Desa</a></li>
-                        <li><a href="{{ route('add.tentang.desa') }}">Add Tentang Desa</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">Sejarah Desa</a>
-                    <ul class="sub-menu">
-                        <li><a href="{{ route('all.sejarah.desa') }}">All Sejarah Desa</a></li>
-                        <li><a href="{{ route('add.sejarah.desa') }}">Add Sejarah Desa</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">Visi Misi</a>
-                    <ul class="sub-menu">
-                        <li><a href="{{ route('all.visimisi.desa') }}">All Visi Misi</a></li>
-                        <li><a href="{{ route('add.visimisi.desa') }}">Add Visi Misi</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">Geografis Desa</a>
-                    <ul class="sub-menu">
-                        <li><a href="{{ route('all.geografis.desa') }}">All Geografis Desa</a></li>
-                        <li><a href="{{ route('add.geografis.desa') }}">Add Geografis Desa</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" class="has-arrow" aria-expanded="false">Perangkat Desa</a>
-                    <ul class="sub-menu">
-                        <li><a href="{{ route('all.perangkat.desa') }}">All Perangkat Desa</a></li>
-                        <li><a href="{{ route('add.perangkat.desa') }}">Add Perangkat Desa</a></li>
-                    </ul>
-                </li>
-            </ul>
         </li>
 
         <!--Berita-->

@@ -16,9 +16,10 @@
         type="text/css" />
     <!-- Icons Css -->
     <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Toaster Css -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <!-- App Css-->
     <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-
 </head>
 
 <body class="auth-body-bg">
@@ -27,12 +28,11 @@
         <div class="container-fluid p-0">
             <div class="card">
                 <div class="card-body">
-
                     <div class="text-center mt-4">
                         <div class="mb-3">
                             <a href="index.html" class="auth-logo">
                                 <img src="{{ asset('front/assets/img/logositoluama.png') }}"
-                                    height="70"width="150" class="logo-dark mx-auto" alt="">
+                                    height="70"width="130" class="logo-dark mx-auto" alt="">
 
                             </a>
                         </div>
@@ -42,11 +42,6 @@
 
                     <div class="p-3">
 
-                        @if (Session::has('error'))
-                            <div class="alert alert-warning" role="alert">
-                                {{ Session::get('error') }}}
-                            </div>
-                        @endif
 
                         <form class="form-horizontal mt-3" action="{{ route('admin.login') }}" method="POST">
                             @csrf
@@ -59,15 +54,6 @@
                             <div class="form-group mb-3 row">
                                 <div class="col-12">
                                     <input class="form-control" type="password" name="password" placeholder="Password">
-                                </div>
-                            </div>
-
-                            <div class="form-group mb-3 row">
-                                <div class="col-12">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="form-label ms-1" for="customCheck1">Remember me</label>
-                                    </div>
                                 </div>
                             </div>
 
@@ -103,9 +89,36 @@
     <script src="{{ asset('backend/assets/libs/metismenu/metisMenu.min.js') }}"></script>
     <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
+    <!-- Toastr -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script src="{{ asset('backend/assets/js/app.js') }}"></script>
 
+    <script>
+        $(document).ready(function() {
+            @if (Session::has('error'))
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": true,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-center",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": 100,
+                    "hideDuration": 500,
+                    "timeOut": 5000,
+                    "extendedTimeOut": 1000,
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+
+                toastr.error("{{ Session::get('error') }}", "Error");
+            @endif
+        });
+    </script>
 </body>
 
 </html>

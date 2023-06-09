@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-lg-3 d-flex align-items-stretch">
                     <div class="content">
-                        <h3>Apa Itu Jelajah Desa ?</h3>
+                        <h3> Layanan Desa </h3>
                         <p>
-                            Jelajah Desa merupakan konsep yang melibatkan kunjungan ke berbagai tempat menarik dalam
+                            Layanan Desa Apa - Apa aja yang melibatkan tempat yang ada dalam
                             Desa Sitoluama. Hal ini memberikan kesempatan
                             untuk menjelajahi dan mengenal lebih dekat desa.
                         </p>

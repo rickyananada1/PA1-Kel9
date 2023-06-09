@@ -654,6 +654,16 @@ section {
     letter-spacing: 0.1em;
 }
 
+.judultntg {
+    display: block;
+    color: #fcaf17;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 26px;
+    letter-spacing: 0.1em;
+}
 .section__title .title {
     margin-bottom: 0;
     font-size: 43px;
@@ -2865,14 +2875,14 @@ Breadcrumb
     border: 2.5px solid #e0e1e4;
     box-shadow: 0px 0px 20px -20px;
     cursor: pointer;
-    background-color: white;
+    background-color: #fff;
     transition: all 0.2s ease-in-out 0ms;
     user-select: none;
     font-family: "Poppins", sans-serif;
 }
 
 .button1:hover {
-    background-color: #f2f2f2;
+    background-color: mintcream;
     box-shadow: 0px 0px 20px -18px;
 }
 
@@ -3143,26 +3153,27 @@ Breadcrumb
 --------------------------------------------------------------*/
 .values .card {
     border: 0;
-    padding: 160px 20px 20px 20px;
+    padding: 30px 20px 20px 20px;
     position: relative;
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+    margin-bottom: 1.9em;
 }
 
 .values .card-body {
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.9);
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.8);
     padding: 15px 30px;
-    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.1);
     transition: 0.3s;
     transition: ease-in-out 0.4s;
     border-radius: 5px;
 }
 
 .values .card-title {
-    font-weight: 700;
+    font-weight: 740;
     text-align: center;
     margin-bottom: 15px;
 }

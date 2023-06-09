@@ -19,7 +19,7 @@
                 <div class="col-lg-8 entries">
 
                     @foreach ($berita as $item)
-                        <article class="entry">
+                        <article id="berita-{{ $loop->index }}" class="entry">
 
                             <div class="entry-img">
                                 <img src="{{ asset($item->berita_image) }}" alt="" class="img-fluid">
@@ -57,6 +57,22 @@
                     @endforeach
 
                     <!-- End blog entry -->
+                    <script>
+                        const articles = document.querySelectorAll('[id^="berita-"]');
+
+                        articles.forEach((article, index) => {
+                            article.style.opacity = '0';
+                            article.style.transform = 'translateY(90px)';
+                            article.style.transition =
+                                `opacity 2s ease-in-out ${index * 2}s, transform 2s ease-in-out ${index * 0.5}s`;
+
+                            setTimeout(() => {
+                                article.style.opacity = '1';
+                                article.style.transform = 'translateY(0)';
+                            }, 200);
+                        });
+                    </script>
+
 
 
                     {{ $berita->onEachSide(1)->links('pagination::bootstrap-5') }}
@@ -68,7 +84,7 @@
 
                     <div class="sidebar">
 
-                        <h3 class="sidebar-title">Search</h3>
+                        <h3 class="sidebar-title">Search Berita</h3>
                         <div class="sidebar-item search-form">
                             <form action="{{ route('search.berita') }}" method="GET">
                                 <input type="text" name="search" placeholder="Cari Berita">

@@ -68,12 +68,17 @@ class UserAlualuController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        $notification = [
-            'message' => 'Alualu Inserted Successfully',
-            'alert-type' => 'success'
-        ];
-
-        return redirect()->route('alualu.user')->with($notification);
+        if ($request->ajax()) {
+            return response()->json([
+                'redirect' => route('alualu.user')
+            ]);
+        } else {
+            $notification = [
+                'message' => 'Alualu Inserted Successfully',
+                'alert-type' => 'success'
+            ];
+            return redirect()->route('alualu.user')->with($notification);
+        }
     }
 
     public function SearchAluAlu(Request $request)

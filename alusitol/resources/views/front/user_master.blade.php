@@ -14,13 +14,65 @@
 
     <link href="{{ asset('backend/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}"
         rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- App Css-->
     <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
     <link href='{{ asset('front/assets/css/general91ac.css') }}' type='text/css' media='all' />
 
     <style>
+        .jdlalu {
+            color: #6c757d;
+            padding-bottom: 1.5em;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .onlyalu {
+            width: 100%;
+            height: 45px;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1.5px solid lightgrey;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0px 0px 20px -18px;
+
+        }
+
+        .onlyalu:active {
+            transform: scale(0.95);
+        }
+
+        .onlyalu:focus {
+            border: 2px solid grey;
+        }
+
+        .onlyalu2:active {
+            transform: scale(0.95);
+        }
+
+        .onlyalu2:focus {
+            border: 2px solid grey;
+        }
+
+
+        .onlyalu2 {
+            width: 100%;
+            height: 150px;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1.5px solid lightgrey;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0px 0px 20px -18px;
+
+        }
+
+        .onlyalu:hover {
+            border: 2px solid lightgrey;
+            box-shadow: 0px 0px 20px -17px;
+        }
+
         .custom-select {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -274,6 +326,64 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('front/assets/css/style.css') }}" rel="stylesheet">
+    <style>
+        .form-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-controllogin {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-3 {
+            margin-top: 15px;
+        }
+
+        .pt-1 {
+            padding-top: 5px;
+        }
+
+        .custom-title {
+            color: var(--font-color);
+            font-weight: 900;
+            font-size: 17px;
+            margin-bottom: 25px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+
+        .btn-info:hover {
+            background-color: #138496;
+            color: #fff;
+        }
+
+        .text-muted {
+            color: #6c757d;
+        }
+
+        .mt-2 {
+            margin-top: 10px;
+        }
+    </style>
 
 </head>
 
@@ -283,6 +393,8 @@
     @include('front.body.header')
     <!-- End Header -->
 
+
+    @include('front.partials.auth')
 
 
     <main id="main" style="padding-top: 30px">

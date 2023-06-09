@@ -49,7 +49,7 @@
                                     <x-text-input id="username" class="form-control" type="text" name="username"
                                         placeholder="Username" :value="old('username')" required autofocus
                                         autocomplete="username" />
-                                    <x-input-error :messages="$errors->get('username')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('username')" class="mt-2" style="color: red" />
                                 </div>
                             </div>
 
@@ -62,7 +62,7 @@
                                     <x-text-input id="password" class="form-control" type="password" name="password"
                                         placeholder="Password" required autocomplete="new-password" />
 
-                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" style="color: red" />
                                 </div>
                             </div>
 
@@ -74,7 +74,7 @@
                                         placeholder="Confirm Password" name="password_confirmation" required
                                         autocomplete="new-password" />
 
-                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" style="color: red" />
                                 </div>
                             </div>
 

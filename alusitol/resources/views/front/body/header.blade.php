@@ -1,3 +1,8 @@
+<!-- Tambahkan script library SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Tambahkan script jQuery jika belum termasuk -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
@@ -10,16 +15,8 @@
             <ul>
                 <li><a class="{{ request()->routeIs('home.user') ? 'active' : '' }}"
                         href="{{ route('home.user') }}">Home</a></li>
-                <li class="dropdown">
-                    <a href="#"><span>Tentang Desa</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul class="dropdown-active">
-                        <li><a href="{{ route('tentangdesa.user') }}">Tentang Desa</a></li>
-                        <li><a href="{{ route('sejarahdesa.user') }}">Sejarah Desa</a></li>
-                        <li><a href="{{ route('visimisi.user') }}">Visi Misi</a></li>
-                        <li><a href="{{ route('geografis.user') }}">Geografis Desa</a></li>
-                        <li><a href="{{ route('perangkatdesa.user') }}">Perangkat Desa</a></li>
-                    </ul>
-                </li>
+                <li><a class="{{ request()->routeIs('tentangdesa.user') ? 'active' : '' }}"
+                        href="{{ route('tentangdesa.user') }}">Tentang desa</a></li>
                 <li><a class="{{ request()->routeIs('layanan.user') ? 'active' : '' }}"
                         href="{{ route('layanan.user') }}">Layanan desa</a></li>
                 <li><a class="{{ request()->routeIs('berita.user') ? 'active' : '' }}"
@@ -35,18 +32,42 @@
             <div class="dropdown">
                 <a href="#" class="get-started-btn">{{ Auth::user()->username }}</a>
                 <div class="dropdown-content">
-                    <a href="{{ route('logout') }}" style="color: red"
-                        onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                        Logout
+                    <a href="#" style="color: red; font-weight: 600;" onclick="confirmLogout(event)">
+                        Logout 🔓
                     </a>
+
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+
+                    <script>
+                        function confirmLogout(event) {
+                            event.preventDefault();
+
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: 'Do you want to logout?',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonText: 'Yes',
+                                cancelButtonText: 'No',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Jika memilih "Yes", submit form logout
+                                    document.getElementById('logout-form').submit();
+                                }
+                            });
+                        }
+                    </script>
+
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </div>
             </div>
         @else
-            <a href="{{ route('login') }}" class="get-started-btn">Login</a>
+            <button class="get-started-btn"onclick="openLoginModal()">Login</button>
         @endif
 
 

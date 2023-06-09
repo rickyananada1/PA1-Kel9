@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\galeri;
 use App\Models\beritacategorym;
 use App\Models\layanancategorym;

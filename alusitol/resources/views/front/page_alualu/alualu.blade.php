@@ -28,28 +28,26 @@
                         @endphp
 
                         @if ($cooldown)
-                            <button type="button" disabled class="button1" data-toggle="modal" data-target="#exampleModal"
-                                data-whatever="@mdo">Next Alu-Alu {{ $cooldown }}</button>
+                            <button type="button" disabled class="swal-button" style="width: 10em" data-toggle="modal"
+                                data-target="#exampleModal" data-whatever="@mdo">Next Alu-Alu {{ $cooldown }}</button>
                         @else
-                            <button type="button" class="button1" data-toggle="modal" data-target="#exampleModal"
-                                data-whatever="@mdo">Buat Alu - Alu</button>
+                            <button type="button" class="swal-button" style="width: 10em" data-toggle="modal"
+                                data-target="#exampleModal" data-whatever="@mdo">Buat Alu - Alu</button>
                         @endif
 
                         @error('isi')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     @else
-                        <form action="{{ route('login') }}">
-                            <button type="submit" class="button1">Buat Alu Alu</button>
-                        </form>
+                        <button class="logindlu swal-button" style="width: 100%;" onclick="showConfirmation()">Buat Alu
+                            Alu</button>
+
                     @endauth
 
 
                     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
                     <script>
-                        document.querySelector('form').addEventListener('submit', function(event) {
-                            event.preventDefault(); // Prevent the form from submitting
-
+                        function showConfirmation() {
                             swal({
                                 title: "Login terlebih dahulu!",
                                 text: "Anda harus login sebelum membuat Alu - Alu.",
@@ -57,19 +55,17 @@
                                 buttons: ["Cancel", "Login"], // Add an additional button
                             }).then(function(isConfirm) {
                                 if (isConfirm) {
-                                    window.location.href = "{{ route('login') }}" // Redirect to the login route
+                                    openLoginModal(); // Call the openLoginModal function or perform any other action
                                 }
                             });
-                        });
+                        }
                     </script>
-
-
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Buat Alu Alu</h5>
+                                    <h5 class="form-title custom-title" id="exampleModalLabel">Buat Alu Alu</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -79,16 +75,17 @@
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="recipient-name" class="col-form-label">Untuk Siapa:</label>
-                                                <input type="text" class="form-control" id="recipient-name" name="to">
+                                                <input type="text" class="onlyalu" id="recipient-name" name="to"
+                                                    placeholder="Untuk Siapa">
                                             </div>
                                             <div class="form-group">
-                                                <label for="message-text" class="col-form-label">Alu -Alu:</label>
-                                                <textarea class="form-control" id="message-text" name="isi"></textarea>
+                                                <textarea class="onlyalu2" id="message-text" name="isi" placeholder="Apa Isinya"></textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="button1">Send message</button>
+                                            <button class="swal-button swal-button--confirm" style="width: 100%"
+                                                type="submit">Buat Alu - Alu
+                                            </button>
                                         </div>
                                     </form>
                                 @endauth
@@ -184,7 +181,8 @@
                     <head>
                         <style>
                             .card-body {
-                                width: 320px;
+                                max-width: 100%;
+                                max-height: 100%;
                                 margin-bottom: 20px;
                                 background-color: #f0f0f0;
                                 padding: 20px;
@@ -200,12 +198,13 @@
                                 top: 50%;
                                 left: 50%;
                                 transform: translate(-50%, -50%);
-                                width: 70%;
-                                max-width: 500px;
-                                max-height: 70%;
+                                width: 30%;
+                                height: 30%;
+                                max-width: 100%;
+                                max-height: 100%;
                                 overflow-y: auto;
                                 z-index: 9999;
-                                background-color: white;
+                                background-color: seashell;
                                 padding: 20px;
                                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
                             }
@@ -213,16 +212,33 @@
                     </head>
 
                 <body>
+                    <style>
+                        .card-body {
+                            opacity: 0;
+                            transform: translateX(-100%);
+                            animation: slide-in 0.5s forwards;
+                        }
+
+                        @keyframes slide-in {
+                            to {
+                                opacity: 1;
+                                transform: translateX(0);
+                            }
+                        }
+                    </style>
                     <div class="col-12" style="height: 100%; max-height: calc(100vh - 150px); overflow-y: auto;">
                         <br>
                         <div class="row">
-                            @foreach ($alualus as $item)
+                            @foreach ($alualus as $index => $item)
                                 <div class="col-md-3 d-flex align-items-stretch">
-                                    <div class="card-body" onclick="toggleCardSize(this)">
+                                    <div class="card-body" onclick="toggleCardSize(this)"
+                                        style="animation-delay: {{ rand(1, 10) / 10 }}s">
                                         <h5 class="card-title">
-                                            <p href="">{{ $item->to }}</p>
+                                            <a href="">{{ $item->to }}</a>
                                         </h5>
                                         <p class="card-text">{!! $item->isi !!}</p>
+                                        <div class="error-message" style="color: red; display: none;"></div>
+
                                         <div class="read-more"><i
                                                 class="bi bi-pencil">&nbsp;</i>{{ $item->from }}&ensp;<i
                                                 class="bi bi-clock"></i><time
@@ -231,6 +247,7 @@
                                     </div>
                                 </div>
                             @endforeach
+
                         </div>
                     </div>
 
@@ -248,7 +265,22 @@
                                 card.classList.add('active');
                             }
                         }
+
+                        // Menambahkan event listener pada area di luar kartu
+                        document.addEventListener('click', function(event) {
+                            var targetElement = event.target;
+                            var isCard = targetElement.closest('.card-body');
+
+                            if (!isCard) {
+                                var activeCards = document.querySelectorAll('.card-body.active');
+
+                                activeCards.forEach(function(card) {
+                                    card.classList.remove('active');
+                                });
+                            }
+                        });
                     </script>
+
                 </body>
 
                 </html>
@@ -297,6 +329,40 @@
                                     $(this).appendTo($(this).closest('.row'));
                                 });
                             }
+                        });
+                    });
+
+                    $(document).ready(function() {
+                        $('form').submit(function(event) {
+                            event.preventDefault(); // Menghentikan pengiriman form bawaan browser
+
+                            var form = $(this);
+                            var url = form.attr('action');
+                            var method = form.attr('method');
+                            var formData = new FormData(form[0]);
+
+                            $.ajax({
+                                url: url,
+                                method: method,
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function(response) {
+                                    // Handle response jika validasi berhasil
+                                    window.location.href = response
+                                        .redirect; // Mengarahkan ke halaman tujuan setelah berhasil
+                                },
+                                error: function(xhr, status, error) {
+                                    // Handle response jika validasi gagal
+                                    var errors = xhr.responseJSON.errors;
+
+                                    // Menampilkan pesan error pada masing-masing input
+                                    $.each(errors, function(field, messages) {
+                                        var input = $('[name="' + field + '"]');
+                                        input.siblings('.error-message').text(messages[0]);
+                                    });
+                                }
+                            });
                         });
                     });
                 </script>

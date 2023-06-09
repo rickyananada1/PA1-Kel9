@@ -3,22 +3,23 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+use Illuminate\Http\Request;
+
+
 
 class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create()
     {
         return view('auth.register');
     }
@@ -28,21 +29,45 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        $request->validate([
-            'username' => ['required', 'string'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        if ($request->ajax()) {
+            $validator = Validator::make($request->all(), [
+                'username' => ['required', 'string', 'unique:users'],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ], [
+                'username.required' => 'Username is required.',
+                'username.string' => 'Username must be a string.',
+                'username.unique' => 'Username has already been taken.',
+                'password.required' => 'Password is required.',
+                'password.confirmed' => 'The password confirmation does not match.',
+            ]);
 
-        $user = User::create([
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-        ]);
+            if ($validator->fails()) {
+                $errors = $validator->errors();
 
-        event(new Registered($user));
+                $response = [
+                    'success' => false,
+                    'errors' => $errors,
+                ];
+            } else {
+                $user = User::create([
+                    'username' => $request->username,
+                    'password' => Hash::make($request->password),
+                ]);
 
-        Auth::login($user);
+                event(new Registered($user));
+
+                Auth::login($user);
+
+                $response = [
+                    'success' => true,
+                    'redirect' => RouteServiceProvider::HOME,
+                ];
+            }
+
+            return response()->json($response);
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }

@@ -37,7 +37,7 @@ class LayananController extends Controller
         $image = $request->file('layanan_image');
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); //ngambil nama file
 
-        Image::make($image)->resize(306, 423)->save('upload/layanan/' . $name_gen); //panjanglebar
+        Image::make($image)->resize(636, 574)->save('upload/layanan/' . $name_gen); //panjanglebar
         $save_url = 'upload/layanan/' . $name_gen;
 
         Layanan::insert([
@@ -78,7 +78,7 @@ class LayananController extends Controller
             $image = $request->file('layanan_image');
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension(); //ngambil nama file
 
-            Image::make($image)->resize(306, 423)->save('upload/layanan/' . $name_gen); //panjanglebar
+            Image::make($image)->resize(636, 574)->save('upload/layanan/' . $name_gen); //panjanglebar
             $save_url = 'upload/layanan/' . $name_gen;
 
             Layanan::findOrFail($layanan_id)->update([

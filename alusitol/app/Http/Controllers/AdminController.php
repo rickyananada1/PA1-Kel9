@@ -46,18 +46,24 @@ class AdminController extends Controller
     {
         $check = $request->all();
 
-        $notification = array(
-            'message' => 'Login Successfully',
-            'alert-type' => 'success'
-        );
-
         if (Auth::guard('admin')->attempt(['username' => $check['username'], 'password' => $check['password']])) {
-            return redirect()->route('admin.dashboard')->with($notification);
+            $response = [
+                'success' => true,
+                'redirect' => route('admin.dashboard')
+            ];
         } elseif (Auth::guard('web')->attempt(['username' => $check['username'], 'password' => $check['password']])) {
-            return redirect()->route('home.user');
+            $response = [
+                'success' => true,
+                'redirect' => route('home.user')
+            ];
         } else {
-            return back()->with('error', 'Invalid Username or Password');
+            $response = [
+                'success' => false,
+                'message' => 'Invalid Username or Password'
+            ];
         }
+
+        return response()->json($response);
     }
 
     public function AdminLogout()
